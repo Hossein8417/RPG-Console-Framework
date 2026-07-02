@@ -22,15 +22,7 @@ class Program {
         new HealthPotion("HealthPotion",400,100,0),
         new FastRunPotion("FastRunPotion",650,0,15)
     };
-    public static List<Character> characters = new List<Character> {
-        new Witcher("Witcher",100, true,items[1], items[2]),
-        new Assassin("Assassin",100, true, items[0], items[4]),
-        new IronHeart("Iron Heart",100, true, items[3], items[4]),
-        new Witch("Witch", 100, true, items[0], items[4]),
-        new NetherBlade("Nether Blade", 100, true, items[3], items[4]),
-        new Ash("Ash", 100, true, items[1], items[2])
-    };
-    public static List<Character> freeCharacters = new List<Character>();
+    
     public static List<Items> playerInventory = new List<Items>();
     public static void Main(string[] args)
     {
@@ -66,11 +58,11 @@ class Program {
 
         Player.IsSelectable = false;
 
-        foreach (Character character in characters)
+        foreach (Character character in CharacterList.characters)
         {
             if (character.IsSelectable == true)
             {
-                freeCharacters.Add(character);
+                CharacterList.freeCharacters.Add(character);
             }
         }
 
@@ -130,8 +122,8 @@ class Program {
         Player = player;
 
         Random random = new Random();
-        int characterIndex = random.Next(0, freeCharacters.Count);
-        ai = freeCharacters[characterIndex];
+        int characterIndex = random.Next(0, CharacterList.freeCharacters.Count);
+        ai = CharacterList.freeCharacters[characterIndex];
 
         Console.WriteLine($"{player.Name} vs {ai.Name}\n");
         ShowPlayerInventory();
