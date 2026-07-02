@@ -1,7 +1,24 @@
 ﻿using System;
+using System.Collections.Generic;
 interface IInteractable
 {
     void Use(Character character, Items item);
+}
+
+class ItemsList {
+
+    public static List<Items> items = new List<Items> {
+        new Sword("Sword",200,0,8),
+        new Bow("Bow",150,0,3),
+        new Arrow("Arrow",11,0,12),
+        new Axe("Axe", 500,0,30),
+        new Sheild("Sheild",350,30,0),
+        new IronArmor("IronArmor",1000,35,0),
+        new GoldArmor("GoldArmor",2000,44,0),
+        new HealthPotion("HealthPotion",400,100,0),
+        new FastRunPotion("FastRunPotion",650,0,15)
+    };
+
 }
 class Items : IInteractable
 {

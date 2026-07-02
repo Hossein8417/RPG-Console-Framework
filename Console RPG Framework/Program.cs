@@ -11,19 +11,11 @@ class Program {
     public static Character AI;
     public static Player Player = new Player("", 100, true);
 
-    public static List<Items> items = new List<Items> {
-        new Sword("Sword",200,0,8),
-        new Bow("Bow",150,0,3),
-        new Arrow("Arrow",11,0,12),
-        new Axe("Axe", 500,0,30),
-        new Sheild("Sheild",350,30,0),
-        new IronArmor("IronArmor",1000,35,0),
-        new GoldArmor("GoldArmor",2000,44,0),
-        new HealthPotion("HealthPotion",400,100,0),
-        new FastRunPotion("FastRunPotion",650,0,15)
-    };
+    
     
     public static List<Items> playerInventory = new List<Items>();
+
+    //app manager(entery point)
     public static void Main(string[] args)
     {
         Console.WriteLine("Hello and welcome to this RPG Framework that built for console");
@@ -51,6 +43,7 @@ class Program {
             }            
         }      
     }
+    //app flow
     public static void GameManager()
     {
         Console.WriteLine("Select Character:\nWitcher\nAssassin\nIron Heart\nWitch\nNether Blade\nAsh");
@@ -69,52 +62,54 @@ class Program {
         if (userChoose == "assassin")
         {
             playerInventory.Clear();
-            playerInventory.Add(items[0]);
-            playerInventory.Add(items[4]);
+            playerInventory.Add(ItemsList.items[0]);
+            playerInventory.Add(ItemsList.items[4]);
             Battle(Player, AI);
         }
         else if (userChoose == "witcher")
         {
             playerInventory.Clear();
-            playerInventory.Add(items[1]);
-            playerInventory.Add(items[2]);
+            playerInventory.Add(ItemsList.items[1]);
+            playerInventory.Add(ItemsList.items[2]);
             Battle(Player, AI);
 
         }
         else if (userChoose == "ironheart")
         {
             playerInventory.Clear();
-            playerInventory.Add(items[3]);
-            playerInventory.Add(items[4]);
+            playerInventory.Add(ItemsList.items[3]);
+            playerInventory.Add(ItemsList.items[4]);
             Battle(Player, AI);
 
         }
         else if (userChoose == "witch")
         {
             playerInventory.Clear();
-            playerInventory.Add(items[0]);
-            playerInventory.Add(items[4]);
+            playerInventory.Add(ItemsList.items[0]);
+            playerInventory.Add(ItemsList.items[4]);
             Battle(Player, AI);
 
         }
         else if (userChoose == "netherblade")
         {
             playerInventory.Clear();
-            playerInventory.Add(items[3]);
-            playerInventory.Add(items[4]);
+            playerInventory.Add(ItemsList.items[3]);
+            playerInventory.Add(ItemsList.items[4]);
             Battle(Player, AI);
 
         }
         else if (userChoose == "ash")
         {
             playerInventory.Clear();
-            playerInventory.Add(items[1]);
-            playerInventory.Add(items[2]);
+            playerInventory.Add(ItemsList.items[1]);
+            playerInventory.Add(ItemsList.items[2]);
             Battle(Player, AI);
 
         }
         else Console.WriteLine("Select a valid character!");
     }
+
+    //app flow
     public static void Battle(Player player, Character ai)
     {
         Player.Name = userChoose;
@@ -143,13 +138,13 @@ class Program {
                 Console.WriteLine("player win");
             }
 
-            if (round == 1 || round == 3 || round == 5 )
+            if (round == 1 || round == 3 || round == 5)
             {
                 player.Attack(player, ai);
                 //ai.Health -= player.item.damage;
                 ai.Defend(ai, player);
             }
-            else if (round == 2 || round == 4 || round == 6 )
+            else if (round == 2 || round == 4 || round == 6)
             {
                 ai.Attack(ai, player);
                 //player.Health -= ai.item.damage;
@@ -162,9 +157,10 @@ class Program {
 
             Thread.Sleep(1500);
             //Console.Clear();
-            round++;        
+            round++;
         }
     }
+    //inventory
     public static void ShowPlayerInventory()
     {
         Console.WriteLine("your inventory is:");
@@ -175,6 +171,7 @@ class Program {
             indexNumber++;
         }
     }
+    //inventory
     public static void ShowAiInventory(){
         string item = AI.Item.Name;
         string item2= AI.Item2.Name;
@@ -188,6 +185,7 @@ class Program {
             Console.WriteLine();
         }
     }
+    //app flow
     public static  void Quit() {
         Console.WriteLine("GoodBye!");
         Console.WriteLine("Press any key to exit!");

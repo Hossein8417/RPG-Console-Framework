@@ -7,12 +7,12 @@ interface IAbillity
 }
 class CharacterList {
     public static List<Character> characters = new List<Character> {
-        new Witcher("Witcher",100, true,items[1], items[2]),
-        new Assassin("Assassin",100, true, items[0], items[4]),
-        new IronHeart("Iron Heart",100, true, items[3], items[4]),
-        new Witch("Witch", 100, true, items[0], items[4]),
-        new NetherBlade("Nether Blade", 100, true, items[3], items[4]),
-        new Ash("Ash", 100, true, items[1], items[2])
+        new Witcher("Witcher",100, true,ItemsList.items[1], ItemsList.items[2]),
+        new Assassin("Assassin",100, true, ItemsList.items[0], ItemsList.items[4]),
+        new IronHeart("Iron Heart",100, true, ItemsList.items[3], ItemsList.items[4]),
+        new Witch("Witch", 100, true, ItemsList.items[0], ItemsList.items[4]),
+        new NetherBlade("Nether Blade", 100, true, ItemsList.items[3], ItemsList.items[4]),
+        new Ash("Ash", 100, true, ItemsList.items[1], ItemsList.items[2])
     };
     public static List<Character> freeCharacters = new List<Character>();
 
