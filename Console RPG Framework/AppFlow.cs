@@ -96,39 +96,39 @@ class AppFlow {
 
         if (userChoose == "assassin")
         {
-            playerInventory.Clear();
-            playerInventory.Add(ItemsList.items[0]);
-            playerInventory.Add(ItemsList.items[4]);
+            inventory.playerInventory.Clear();
+            inventory.playerInventory.Add(ItemsList.items[0]);
+            inventory.playerInventory.Add(ItemsList.items[4]);
         }
         else if (userChoose == "witcher")
         {
-            playerInventory.Clear();
-            playerInventory.Add(ItemsList.items[1]);
-            playerInventory.Add(ItemsList.items[2]);
+            inventory.playerInventory.Clear();
+            inventory.playerInventory.Add(ItemsList.items[1]);
+            inventory.playerInventory.Add(ItemsList.items[2]);
         }
         else if (userChoose == "ironheart")
         {
-            playerInventory.Clear();
-            playerInventory.Add(ItemsList.items[3]);
-            playerInventory.Add(ItemsList.items[4]);
+            inventory.playerInventory.Clear();
+            inventory.playerInventory.Add(ItemsList.items[3]);
+            inventory.playerInventory.Add(ItemsList.items[4]);
         }
         else if (userChoose == "witch")
         {
-            playerInventory.Clear();
-            playerInventory.Add(ItemsList.items[0]);
-            playerInventory.Add(ItemsList.items[4]);
+            inventory.playerInventory.Clear();
+            inventory.playerInventory.Add(ItemsList.items[0]);
+            inventory.playerInventory.Add(ItemsList.items[4]);
         }
         else if (userChoose == "netherblade")
         {
-            playerInventory.Clear();
-            playerInventory.Add(ItemsList.items[3]);
-            playerInventory.Add(ItemsList.items[4]);
+            inventory.playerInventory.Clear();
+            inventory.playerInventory.Add(ItemsList.items[3]);
+            inventory.playerInventory.Add(ItemsList.items[4]);
         }
         else if (userChoose == "ash")
         {
-            playerInventory.Clear();
-            playerInventory.Add(ItemsList.items[1]);
-            playerInventory.Add(ItemsList.items[2]);
+            inventory.playerInventory.Clear();
+            inventory.playerInventory.Add(ItemsList.items[1]);
+            inventory.playerInventory.Add(ItemsList.items[2]);
         }
         else Console.WriteLine("Select a valid character!");
     }
@@ -147,8 +147,8 @@ class AppFlow {
         ai = CharacterList.freeCharacters[characterIndex];
 
         Console.WriteLine($"{player.Name} vs {ai.Name}\n");
-        ShowPlayerInventory();
-        ShowAiInventory();
+        inventory.ShowPlayerInventory();
+        inventory.ShowAiInventory();
 
         for (int round = 1; round <= 6;)
         {
