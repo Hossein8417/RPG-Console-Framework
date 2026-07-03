@@ -15,6 +15,12 @@ using System.IO;
 //    public AiData(string name, int health, bool isSelectable) : base(name, health, isSelectable) { }
 
 //}
+
+class Data {
+    
+
+
+}
 class Load {
    
 }

@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppFlow.cs" />
     <Compile Include="Characters.cs" />
     <Compile Include="PlayerData.cs" />
     <Compile Include="Items.cs" />

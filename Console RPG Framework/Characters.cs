@@ -16,6 +16,9 @@ class CharacterList {
     };
     public static List<Character> freeCharacters = new List<Character>();
 
+    public static Character AiCharacter;
+    //this player object must go to characters list and set bool to false and after that need another logic to avoid ai choose player character
+    public static Player PlayerCharacter = new Player("", 100, true);
 
 }
 class Character : IAbillity

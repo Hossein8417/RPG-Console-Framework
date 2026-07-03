@@ -23,6 +23,7 @@ class ItemsList {
 class Items : IInteractable
 {
     //every character have unique item , skill and level
+    //every character have different item in their inventory and every item have different skills that affect on final damage or health
     public string Name { get;  set; }
     public int Price { get;  set; }
     public int Heal { get;  set; }
