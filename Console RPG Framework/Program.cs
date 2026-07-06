@@ -1,8 +1,11 @@
 ﻿using System;
 class Program {
-
+    public static bool AppLoop = true;
     public static void Main(string[] args)
     {
-        AppFlow.SectionSwitcher();
+        while (AppLoop)
+        {
+            AppFlow.SectionSwitcher();
+        }
     }
 }

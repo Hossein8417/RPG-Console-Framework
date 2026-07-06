@@ -4,10 +4,12 @@ using System.Collections.Generic;
 class inventory {
 
     public static List<Items> playerInventory = new List<Items>();
+    //public static List<Items> aiInventory = new List<Items>();
+
 
     public static void ShowPlayerInventory()
     {
-        Console.WriteLine("your inventory is:");
+        Console.WriteLine($"{CharacterList.PlayerCharacter.Name} inventory is:");
         int indexNumber = 1;
         foreach (Items item in playerInventory)
         {
@@ -18,18 +20,16 @@ class inventory {
 
     public static void ShowAiInventory()
     {
-        string item = CharacterList.AiCharacter.Item.Name;
-        string item2 = CharacterList.AiCharacter.Item2.Name;
+        Items item = CharacterList.AI.Item;
+        Items item2 = CharacterList.AI.Item2;
 
-        Console.WriteLine($"{CharacterList.AiCharacter} inventory is:");
-
-        for (int indexNumber = 1; indexNumber <= 4; indexNumber++)
+        Console.WriteLine($"{CharacterList.AI.Name} inventory is:");
+        
+        for (int indexNumber = 1; indexNumber <= 2; indexNumber++)
         {
-            Console.WriteLine($"{indexNumber}_{item}");
-            Console.WriteLine($"{indexNumber}_{item2}");
+            Console.WriteLine($"{indexNumber}_{item.Name}");
+            Console.WriteLine($"{indexNumber}_{item2.Name}");
             Console.WriteLine();
         }
     }
-
-
 }

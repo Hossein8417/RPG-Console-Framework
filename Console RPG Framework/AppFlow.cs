@@ -7,22 +7,17 @@ public enum Flow {
     Battle,
     Quit
 }
-//ai can take player character need to fix
 
-class AppFlow { 
-
-    static Flow CurrentFlow = Flow.Start;
-
-    public static bool mainMenuLoop = true;
-
-    public static string userChoose;
+class AppFlow {
+    public static bool loop = true;
+    
+    public static Flow CurrentFlow = Flow.Start;
     public static void SectionSwitcher() {
 
         switch (CurrentFlow)
         {
             case Flow.Start:
                 AppStart();
-                CurrentFlow = Flow.MainMenu;
                 break;
 
             case Flow.MainMenu:
@@ -31,12 +26,10 @@ class AppFlow {
 
             case Flow.CharacterSelect:
                 CharacterSelect();
-                CurrentFlow = Flow.Battle;
                 break;
 
             case Flow.Battle:
-                Battle(CharacterList.PlayerCharacter, CharacterList.AiCharacter);
-                //CurrentFlow = Flow.Start;
+                Battle();
                 break;
 
             case Flow.Quit:
@@ -50,24 +43,29 @@ class AppFlow {
     }
     public static void AppStart() {
         Console.WriteLine("Loading app");
+        CurrentFlow = Flow.MainMenu;
     }
     public static void MainMenu() {
-
+        //loop #1
         Console.WriteLine("Hello and welcome to this RPG Framework that built for console");
-        while (mainMenuLoop)
+        while (loop)
         {
+            bool menuLoop = true;
             Console.WriteLine("1_Play\n2_Quit Game");
             string input = Console.ReadLine().ToLower().Trim();
-            while (true)
+            //loop #2
+            while (menuLoop)
             {
                 if (input == "play" || input == "1")
                 {
                     CurrentFlow = Flow.CharacterSelect;
+                    loop = false;
                     break;
                 }
                 else if (input == "quit" || input == "2")
                 {
                     CurrentFlow = Flow.Quit;
+                    loop = false;
                     break;
                 }
                 else
@@ -80,73 +78,58 @@ class AppFlow {
     }
     public static void CharacterSelect()
     {
-        Console.WriteLine("Select Character:\nWitcher\nAssassin\nIron Heart\nWitch\nNether Blade\nAsh");
-        userChoose = Console.ReadLine().ToLower().Trim();
-        // i create a obj for player and i use obj's name and properties and .... that is not correct and need to fix 
-        //solution: player must create from user choice and read user choice's player's name and properties
-        CharacterList.PlayerCharacter.IsSelectable = false;
+        CharacterList.GetPlayerCharacter();
 
-        foreach (Character character in CharacterList.characters)
-        {
-            if (character.IsSelectable == true)
-            {
-                CharacterList.freeCharacters.Add(character);
-            }
-        }
+        CharacterList.SetAICharacter();
 
-        if (userChoose == "assassin")
+        if (CharacterList.userChoose == "1")
         {
             inventory.playerInventory.Clear();
             inventory.playerInventory.Add(ItemsList.items[0]);
             inventory.playerInventory.Add(ItemsList.items[4]);
         }
-        else if (userChoose == "witcher")
+        else if (CharacterList.userChoose == "2")
         {
             inventory.playerInventory.Clear();
             inventory.playerInventory.Add(ItemsList.items[1]);
             inventory.playerInventory.Add(ItemsList.items[2]);
         }
-        else if (userChoose == "ironheart")
+        else if (CharacterList.userChoose == "3")
         {
             inventory.playerInventory.Clear();
             inventory.playerInventory.Add(ItemsList.items[3]);
             inventory.playerInventory.Add(ItemsList.items[4]);
         }
-        else if (userChoose == "witch")
+        else if (CharacterList.userChoose == "4")
         {
             inventory.playerInventory.Clear();
             inventory.playerInventory.Add(ItemsList.items[0]);
             inventory.playerInventory.Add(ItemsList.items[4]);
         }
-        else if (userChoose == "netherblade")
+        else if (CharacterList.userChoose == "5")
         {
             inventory.playerInventory.Clear();
             inventory.playerInventory.Add(ItemsList.items[3]);
             inventory.playerInventory.Add(ItemsList.items[4]);
         }
-        else if (userChoose == "ash")
+        else if (CharacterList.userChoose == "6")
         {
             inventory.playerInventory.Clear();
             inventory.playerInventory.Add(ItemsList.items[1]);
             inventory.playerInventory.Add(ItemsList.items[2]);
         }
         else Console.WriteLine("Select a valid character!");
+
+        CurrentFlow = Flow.Battle;
     }
-    public static void Battle(Player player, Character ai)
+    public static void Battle()
     {
-        
-        CharacterList.PlayerCharacter.Name = userChoose;
+        //CharacterList.PlayerCharacter = player;
+        //CharacterList.AI = ai;
+        //player = CharacterList.PlayerCharacter;
+        //ai = CharacterList.AI;
 
-        CharacterList.PlayerCharacter = player;
-
-        CharacterList.AiCharacter = ai;
-       
-
-        Random random = new Random();
-        int characterIndex = random.Next(0, CharacterList.freeCharacters.Count);
-        ai = CharacterList.freeCharacters[characterIndex];
-
-        Console.WriteLine($"{player.Name} vs {ai.Name}\n");
+        Console.WriteLine($"{CharacterList.PlayerCharacter.Name} vs {CharacterList.AI.Name}");
         inventory.ShowPlayerInventory();
         inventory.ShowAiInventory();
 
@@ -154,27 +137,27 @@ class AppFlow {
         {
             Console.WriteLine($"Round {round}");
 
-            if (player.Health <= 0)
+            if (CharacterList.PlayerCharacter.Health <= 0)
             {
                 Console.WriteLine("ai win");
             }
 
-            if (ai.Health <= 0)
+            if (CharacterList.AI.Health <= 0)
             {
                 Console.WriteLine("player win");
             }
 
             if (round == 1 || round == 3 || round == 5)
             {
-                player.Attack(player, ai);
+                CharacterList.PlayerCharacter.Attack(CharacterList.PlayerCharacter, CharacterList.AI);
                 //ai.Health -= player.item.damage;
-                ai.Defend(ai, player);
+                CharacterList.AI.Defend(CharacterList.AI, CharacterList.PlayerCharacter);
             }
             else if (round == 2 || round == 4 || round == 6)
             {
-                ai.Attack(ai, player);
+                CharacterList.AI.Attack(CharacterList.AI, CharacterList.PlayerCharacter);
                 //player.Health -= ai.item.damage;
-                player.Defend(player, ai);
+                CharacterList.PlayerCharacter.Defend(CharacterList.PlayerCharacter, CharacterList.AI);
             }
 
 
@@ -186,11 +169,12 @@ class AppFlow {
             //Console.Clear();
             round++;
         }
+        CurrentFlow = Flow.Start;
     }
     public static void Quit()
     {
         Console.WriteLine("GoodBye!");
         Console.WriteLine("Press any key to exit!");
-        mainMenuLoop = false;
+        Program.AppLoop = false;
     }
 }

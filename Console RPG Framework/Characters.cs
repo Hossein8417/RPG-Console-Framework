@@ -2,10 +2,20 @@
 using System.Collections.Generic;
 interface IAbillity
 {
-    void Attack(Character player, Player ai);
-    void Defend(Character player, Player ai);
+    void Attack(Character player, Character ai);
+    void Defend(Character player, Character ai);
 }
 class CharacterList {
+
+
+    public static string userChoose;
+    public static int userChooseIndex;
+    static Random random = new Random();
+
+    public static Character PlayerCharacter;
+
+    public static Character AI;
+
     public static List<Character> characters = new List<Character> {
         new Witcher("Witcher",100, true,ItemsList.items[1], ItemsList.items[2]),
         new Assassin("Assassin",100, true, ItemsList.items[0], ItemsList.items[4]),
@@ -14,12 +24,49 @@ class CharacterList {
         new NetherBlade("Nether Blade", 100, true, ItemsList.items[3], ItemsList.items[4]),
         new Ash("Ash", 100, true, ItemsList.items[1], ItemsList.items[2])
     };
+
     public static List<Character> freeCharacters = new List<Character>();
+    
+    public static void GetPlayerCharacter()
+    {
+        while (true) {
+            Console.WriteLine("For next content please select character by number's (1-6) : ");
+            Console.WriteLine($"Select Character:\n1-{characters[0].Name}\n2-{characters[1].Name}\n3-{characters[2].Name}" +
+                $"\n4-{characters[3].Name}\n5-{characters[4].Name}\n6-{characters[5].Name}");
+            userChoose = Console.ReadLine().Trim();
 
-    public static Character AiCharacter;
-    //this player object must go to characters list and set bool to false and after that need another logic to avoid ai choose player character
-    public static Player PlayerCharacter = new Player("", 100, true);
+            bool isValid = int.TryParse(userChoose, out userChooseIndex);
+            if (isValid)
+            {
+                SetPlayerCharacter();
+                break;
+            }
+            else Console.WriteLine("Enter a valid type!!");
+        }
+    }
 
+    public static void SetPlayerCharacter() {
+        PlayerCharacter = characters[userChooseIndex - 1];
+        PlayerCharacter.IsSelectable = false;
+    }
+
+    public static void GetAICharacter() {
+        foreach (Character character in characters)
+        {
+            if (character.IsSelectable == true)
+            {
+                freeCharacters.Add(character);
+            }
+        }
+    }
+
+    public static void SetAICharacter()
+    {
+        GetAICharacter();
+        
+        int aiCharaceterIndex = random.Next(0, freeCharacters.Count);
+        AI = freeCharacters[aiCharaceterIndex];
+    }    
 }
 class Character : IAbillity
 {
@@ -37,11 +84,11 @@ class Character : IAbillity
         Item = item;
         Item2 = items2;
     }
-    public virtual void Attack(Character character1, Player character2)
+    public virtual void Attack(Character character1, Character character2)
     {
         Console.WriteLine($"{character1.Name} attacked {character2.Name}");
     }
-    public virtual void Defend(Character character1, Player character2)
+    public virtual void Defend(Character character1, Character character2)
     {
         Console.WriteLine($"{character1.Name} defending himself from {character2.Name}");
     } 
