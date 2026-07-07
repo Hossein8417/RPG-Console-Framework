@@ -7,7 +7,6 @@ interface IAbillity
 }
 class CharacterList {
 
-
     public static string userChoose;
     public static int userChooseIndex;
     static Random random = new Random();
@@ -17,12 +16,12 @@ class CharacterList {
     public static Character AI;
 
     public static List<Character> characters = new List<Character> {
-        new Witcher("Witcher",100, true,ItemsList.items[1], ItemsList.items[2]),
-        new Assassin("Assassin",100, true, ItemsList.items[0], ItemsList.items[4]),
-        new IronHeart("Iron Heart",100, true, ItemsList.items[3], ItemsList.items[4]),
-        new Witch("Witch", 100, true, ItemsList.items[0], ItemsList.items[4]),
-        new NetherBlade("Nether Blade", 100, true, ItemsList.items[3], ItemsList.items[4]),
-        new Ash("Ash", 100, true, ItemsList.items[1], ItemsList.items[2])
+        new Witcher("Witcher",100, true, 3, ItemsList.items[1], ItemsList.items[2]),
+        new Assassin("Assassin",100, true, 2, ItemsList.items[0], ItemsList.items[4]),
+        new IronHeart("Iron Heart",100, true, 5, ItemsList.items[3], ItemsList.items[4]),
+        new Witch("Witch", 100, true, 4, ItemsList.items[0], ItemsList.items[4]),
+        new NetherBlade("Nether Blade", 100, true, 6, ItemsList.items[3], ItemsList.items[4]),
+        new Ash("Ash", 100, true, 2, ItemsList.items[1], ItemsList.items[2])
     };
 
     public static List<Character> freeCharacters = new List<Character>();
@@ -75,68 +74,52 @@ class Character : IAbillity
     public bool IsSelectable { get;  set; }
     public Items Item { get; set; }
     public Items Item2 { get; set; }
+    public static int Damage { get; set; }
 
-    public Character(string name, int health, bool isSelectable, Items item, Items items2)
+    public Character(string name, int health, bool isSelectable, int damage ,Items item, Items items2)
     {
+        
         Name = name;
         Health = health;
         IsSelectable = isSelectable;
+        Damage = damage;
         Item = item;
         Item2 = items2;
     }
+    //stupid logic for attack and defend , fix this!!!!!
     public virtual void Attack(Character character1, Character character2)
     {
-        Console.WriteLine($"{character1.Name} attacked {character2.Name}");
+        Item.Use(character1, character2, Item);
     }
     public virtual void Defend(Character character1, Character character2)
     {
-        Console.WriteLine($"{character1.Name} defending himself from {character2.Name}");
+        Health += character1.Item2.Heal;
+        Console.WriteLine($"{character2} take's {character1.Item.Damage} damage\n{character1} health is {character1.Health} ");   
     } 
 }
 #region Characters
-class Player 
-{
-    public string Name { get; set; }
-    public int Health { get; set; }
-    public bool IsSelectable { get; set; }
-    public Player(string name, int health, bool isSelectable) { 
-        Name = name;
-        Health = health;
-        IsSelectable = isSelectable;
-    }
-
-    public void Attack(Player character1, Character character2)
-    {
-        Console.WriteLine($"{character1.Name} attacked {character2.Name}");
-    }
-    public void Defend(Player character1, Character character2)
-    {
-        Console.WriteLine($"{character1.Name} defending himself from {character2.Name}");
-    }
-
-}
 class Witcher : Character
 {
-    public Witcher(string name, int health, bool isSelectable, Items item, Items item2) : base(name, health, isSelectable, item, item2) { }
+    public Witcher(string name, int health, bool isSelectable, int damage,Items item, Items item2) : base(name, health, isSelectable, damage,item, item2) { }
 }
 class Assassin : Character
 {
-    public Assassin(string name, int health, bool isSelectable, Items item, Items item2) : base(name, health,isSelectable, item, item2) { }
+    public Assassin(string name, int health, bool isSelectable, int damage, Items item, Items item2) : base(name, health, isSelectable, damage, item, item2) { }
 }
 class IronHeart : Character
 {
-    public IronHeart(string name, int health, bool isSelectable, Items item, Items item2) : base(name, health, isSelectable, item, item2) { }
+    public IronHeart(string name, int health, bool isSelectable, int damage, Items item, Items item2) : base(name, health, isSelectable, damage , item, item2) { }
 }
 class Witch : Character
 {
-    public Witch(string name, int health, bool isSelectable, Items item, Items item2) : base(name, health, isSelectable, item, item2) { }
+    public Witch(string name, int health, bool isSelectable, int damage, Items item, Items item2) : base(name, health, isSelectable, damage,  item, item2) { }
 }
 class NetherBlade : Character
 {
-    public NetherBlade(string name, int health, bool isSelectable, Items item, Items item2) : base(name, health, isSelectable, item, item2) { }
+    public NetherBlade(string name, int health, bool isSelectable, int damage, Items item, Items item2) : base(name, health, isSelectable, damage, item, item2) { }
 }
 class Ash : Character
 {
-    public Ash(string name, int health, bool isSelectable, Items item, Items item2) : base(name, health, isSelectable, item, item2) { }
+    public Ash(string name, int health, bool isSelectable, int damage, Items item, Items item2) : base(name, health, isSelectable, damage, item, item2) { }
 }
 #endregion

@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 interface IInteractable
 {
-    void Use(Character character, Items item);
+    void Use(Character character1, Character character2, Items item);
 }
 
 class ItemsList {
 
     public static List<Items> items = new List<Items> {
+        //name,price,heal,damage
         new Sword("Sword",200,0,8),
-        new Bow("Bow",150,0,3),
-        new Arrow("Arrow",11,0,12),
+        new Bow("Bow & Arrow",150,0,12),
+        new Arrow("Stick",11,0,9),
         new Axe("Axe", 500,0,30),
         new Sheild("Sheild",350,30,0),
         new IronArmor("IronArmor",1000,35,0),
@@ -22,7 +23,6 @@ class ItemsList {
 }
 class Items : IInteractable
 {
-    //every character have unique item , skill and level
     //every character have different item in their inventory and every item have different skills that affect on final damage or health
     public string Name { get;  set; }
     public int Price { get;  set; }
@@ -35,9 +35,10 @@ class Items : IInteractable
         Heal = heal;
         Damage = damage;
     }
-    public virtual void Use(Character character, Items item)
+    public void Use(Character character1, Character character2 ,Items item)
     {
-        Console.WriteLine($"{character.Name} using {item.Name} item");
+        Character.Damage += character1.Item.Damage;
+        Console.WriteLine($"{character1.Name} attacked {character2.Name} with {character1.Item.Name}"); ;
     }
 }
 #region Items
