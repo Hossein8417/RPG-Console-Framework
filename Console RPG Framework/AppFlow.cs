@@ -35,14 +35,12 @@ class AppFlow {
             case Flow.Quit:
                 Quit();
                 break;
-
-            default:
-                Console.WriteLine("Invalid phase");
-                break;
         }
     }
     public static void AppStart() {
-        Console.WriteLine("Loading app");
+        Console.WriteLine("Loading app,Please wait!");
+        //Thread.Sleep(1700);
+        //Console.Clear();
         CurrentFlow = Flow.MainMenu;
     }
     public static void MainMenu() {
@@ -124,8 +122,6 @@ class AppFlow {
     }
     public static void Battle()
     {
-
-
         Console.WriteLine($"{CharacterList.PlayerCharacter.Name} vs {CharacterList.AI.Name}");
         inventory.ShowPlayerInventory();
         inventory.ShowAiInventory();
@@ -166,10 +162,29 @@ class AppFlow {
             //Console.Clear();
             round++;
         }
-        CurrentFlow = Flow.Start;
+        ReLoopApp();
+    }
+    public static void ReLoopApp() {
+        Console.WriteLine("Play again? (Y/N)");
+        string userAction = Console.ReadLine().ToLower().Trim();
+        char appLoopStart;
+        bool isValid = char.TryParse(userAction, out appLoopStart);
+        if (isValid)
+        {
+            if (appLoopStart == 'y')
+            {
+                CurrentFlow = Flow.MainMenu;
+            }
+            if (appLoopStart == 'n')
+            {
+                CurrentFlow = Flow.Quit;
+            }
+        }
+        else Console.WriteLine("Try String form of input");
     }
     public static void Quit()
     {
+        Console.Clear();
         Console.WriteLine("GoodBye!");
         Console.WriteLine("Press any key to exit!");
         Program.AppLoop = false;

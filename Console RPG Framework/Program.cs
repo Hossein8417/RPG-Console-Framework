@@ -1,5 +1,4 @@
-﻿using System;
-class Program {
+﻿class Program {
     public static bool AppLoop = true;
     public static void Main(string[] args)
     {
