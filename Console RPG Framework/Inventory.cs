@@ -4,7 +4,7 @@ using System.Collections.Generic;
 class inventory {
 
     public static List<Items> playerInventory = new List<Items>();
-    //public static List<Items> aiInventory = new List<Items>();
+    public static List<Items> aiInventory = new List<Items>();
 
 
     public static void ShowPlayerInventory()
@@ -20,16 +20,17 @@ class inventory {
 
     public static void ShowAiInventory()
     {
-        Items item = CharacterList.AI.Item;
+        Items item1 = CharacterList.AI.Item;
         Items item2 = CharacterList.AI.Item2;
 
+        aiInventory.Clear();
+        aiInventory.Add(item1);
+        aiInventory.Add(item2);
+
         Console.WriteLine($"{CharacterList.AI.Name} inventory is:");
-        
-        for (int indexNumber = 1; indexNumber <= 2; indexNumber++)
-        {
-            Console.WriteLine($"{indexNumber}_{item.Name}");
-            Console.WriteLine($"{indexNumber}_{item2.Name}");
-            Console.WriteLine();
-        }
+        int indexNumber = 1;
+
+        Console.WriteLine($"{indexNumber}_{item1.Name}");
+        Console.WriteLine($"{indexNumber + 1}_{item2.Name}");
     }
 }

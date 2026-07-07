@@ -124,10 +124,7 @@ class AppFlow {
     }
     public static void Battle()
     {
-        //CharacterList.PlayerCharacter = player;
-        //CharacterList.AI = ai;
-        //player = CharacterList.PlayerCharacter;
-        //ai = CharacterList.AI;
+
 
         Console.WriteLine($"{CharacterList.PlayerCharacter.Name} vs {CharacterList.AI.Name}");
         inventory.ShowPlayerInventory();
