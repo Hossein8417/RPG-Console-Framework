@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Media;
 using System.Threading;
+using System.Threading.Tasks;
 public enum Flow { 
     Start,
     Shop,
@@ -9,11 +9,7 @@ public enum Flow {
     Battle,
     Quit
 }
-//all of thread.sleep() lines must delete and use correct method for it
 //code must refactored and must use SOLID and Design pattenrs(when possible)
-//quest system must add to app 
-//shop system must add to app
-//skills must affect on damages and heals
 
 class AppFlow {
 
@@ -28,10 +24,6 @@ class AppFlow {
             case Flow.Start:
                 AppStart();
                 break;
-
-            //case Flow.Shop:
-            //    Shop.ShopScreen();
-            //    break;
 
             case Flow.MainMenu:
                 MainMenu();
@@ -52,7 +44,7 @@ class AppFlow {
     }
     public static void AppStart() {
         Console.WriteLine("Loading app,Please wait!");
-        //Thread.Sleep(1700);
+        Delayer(1500);
         //Console.Clear();
         CurrentFlow = Flow.MainMenu;
     }
@@ -167,7 +159,7 @@ class AppFlow {
                 CharacterList.Player.Defend(CharacterList.Player,CharacterList.AI);
             }
 
-            Thread.Sleep(1500);
+            Delayer(1500);
             //Console.Clear();
         }
         ReLoopApp();
@@ -190,6 +182,9 @@ class AppFlow {
             }
         }
         else Console.WriteLine("Try String form of input");
+    }
+    async static void Delayer(int time) {
+        await Task.Delay(time);
     }
     public static void Quit()
     {

@@ -90,15 +90,12 @@ class Character : IAbillity
         Item2 = items2;
 
     }
-    //BUG: after a match finished . player/ai health must reset!!
-    //BUG: every round ,damage must reset and not += on the previous damage from last round
-    public void Attack(Character character1, Character character2)//attacker/defender    ======= item1 == for attack      ===== items2 == for defend
+    public void Attack(Character character1, Character character2)
     {
         Console.WriteLine($"{character1.Name} attack {character2.Name}");
-                
-        
+
     }
-    public void Defend(Character character1, Character character2)//defender/attacker
+    public void Defend(Character character1, Character character2)
     {
         Console.WriteLine($"{character1.Name} Defending himself from {character2.Name}");
 
@@ -117,7 +114,6 @@ class Character : IAbillity
         character1.health -= character2.damage;
         Console.WriteLine($"{character1.Name} health is {health}");
     }
-
 }
 #region Characters
 class Witcher : Character
