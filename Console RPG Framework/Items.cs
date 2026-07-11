@@ -1,26 +1,35 @@
 ﻿using System;
-interface IInteractable
-{
-    void Use(Character character, Items item);
+using System.Collections.Generic;
+
+class ItemsList {
+
+    public static List<Items> items = new List<Items> {
+        new Sword("Sword",200,0,8),
+        new Bow("Bow & Arrow",150,0,12),
+        new Arrow("Stick",11,0,9),
+        new Axe("Axe", 500,0,30),
+        new Sheild("Sheild",350,30,0),
+        new IronArmor("IronArmor",1000,35,0),
+        new GoldArmor("GoldArmor",2000,44,0),
+        new HealthPotion("HealthPotion",400,100,0),
+        new FastRunPotion("FastRunPotion",650,0,15)
+    };
 }
-class Items : IInteractable
+class Items
 {
-    //every character have unique item , skill and level
+    //every character have different item in their inventory and every item have different skills that affect on final damage or health
     public string Name { get;  set; }
     public int Price { get;  set; }
     public int Heal { get;  set; }
-    public int Damage { get;  set; }
+    public int ItemDamage { get;  set; }
     public Items(string name, int price, int heal, int damage)
     {
         Name = name;
         Price = price;
         Heal = heal;
-        Damage = damage;
+        ItemDamage = damage;
     }
-    public virtual void Use(Character character, Items item)
-    {
-        Console.WriteLine($"{character.Name} using {item.Name} item");
-    }
+
 }
 #region Items
 class Sword : Items
