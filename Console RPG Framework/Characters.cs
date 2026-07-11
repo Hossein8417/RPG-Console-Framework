@@ -9,19 +9,20 @@ class CharacterList {
 
     public static string userChoose;
     public static int userChooseIndex;
+
     static Random random = new Random();
 
-    public static Character PlayerCharacter;
+    public static Character Player;
 
     public static Character AI;
 
     public static List<Character> characters = new List<Character> {
-        new Witcher("Witcher",100, true, 3, ItemsList.items[1], ItemsList.items[2]),
-        new Assassin("Assassin",100, true, 2, ItemsList.items[0], ItemsList.items[4]),
+        new Witcher("Witcher",100, true, 3, ItemsList.items[1], ItemsList.items[4]),
+        new Assassin("Assassin",100, true, 2, ItemsList.items[0], ItemsList.items[5]),
         new IronHeart("Iron Heart",100, true, 5, ItemsList.items[3], ItemsList.items[4]),
-        new Witch("Witch", 100, true, 4, ItemsList.items[0], ItemsList.items[4]),
+        new Witch("Witch", 100, true, 4, ItemsList.items[0], ItemsList.items[5]),
         new NetherBlade("Nether Blade", 100, true, 6, ItemsList.items[3], ItemsList.items[4]),
-        new Ash("Ash", 100, true, 2, ItemsList.items[1], ItemsList.items[2])
+        new Ash("Ash", 100, true, 2, ItemsList.items[1], ItemsList.items[5])
     };
 
     public static List<Character> freeCharacters = new List<Character>();
@@ -45,8 +46,9 @@ class CharacterList {
     }
 
     public static void SetPlayerCharacter() {
-        PlayerCharacter = characters[userChooseIndex - 1];
-        PlayerCharacter.IsSelectable = false;
+        
+        Player = characters[userChooseIndex - 1];
+        Player.IsSelectable = false;
     }
 
     public static void GetAICharacter() {
@@ -70,56 +72,76 @@ class CharacterList {
 class Character : IAbillity
 {
     public string Name { get; set; }
-    public int Health { get;  set; }
+    public int BaseHealth { get;  set; }
+    public int BaseDamage { get; set; }
     public bool IsSelectable { get;  set; }
     public Items Item { get; set; }
     public Items Item2 { get; set; }
-    public static int Damage { get; set; }
 
-    public Character(string name, int health, bool isSelectable, int damage ,Items item, Items items2)
+    int health;
+    int damage;
+    public Character(string name, int baseHealth, bool isSelectable, int baseDamage, Items item, Items items2)
     {
-        
         Name = name;
-        Health = health;
+        BaseHealth = baseHealth;
+        BaseDamage = baseDamage;
         IsSelectable = isSelectable;
-        Damage = damage;
         Item = item;
         Item2 = items2;
+
     }
-    //stupid logic for attack and defend , fix this!!!!!
-    public virtual void Attack(Character character1, Character character2)
+    //BUG: after a match finished . player/ai health must reset!!
+    //BUG: every round ,damage must reset and not += on the previous damage from last round
+    public void Attack(Character character1, Character character2)//attacker/defender    ======= item1 == for attack      ===== items2 == for defend
     {
-        Item.Use(character1, character2, Item);
+        Console.WriteLine($"{character1.Name} attack {character2.Name}");
+                
+        
     }
-    public virtual void Defend(Character character1, Character character2)
+    public void Defend(Character character1, Character character2)//defender/attacker
     {
-        Health += character1.Item2.Heal;
-        Console.WriteLine($"{character2} take's {character1.Item.Damage} damage\n{character1} health is {character1.Health} ");   
-    } 
+        Console.WriteLine($"{character1.Name} Defending himself from {character2.Name}");
+
+        UpdateHealth(character1, character2);
+
+    }
+    public void CalculateHealth(Character character) {
+        health = character.BaseHealth + character.Item2.Heal;
+        Console.WriteLine($"{character.Name} health is {health}.(Before start game)");
+    }
+    
+    public void CalculateDamage(Character character) { 
+        damage = character.BaseDamage + character.Item.ItemDamage;
+    }
+    public void UpdateHealth(Character character1, Character character2) { 
+        character1.health -= character2.damage;
+        Console.WriteLine($"{character1.Name} health is {health}");
+    }
+
 }
 #region Characters
 class Witcher : Character
 {
-    public Witcher(string name, int health, bool isSelectable, int damage,Items item, Items item2) : base(name, health, isSelectable, damage,item, item2) { }
+    public Witcher(string name, int baseHealth, bool isSelectable, int baseDamage, Items item, Items item2) : base(name, baseHealth, isSelectable, baseDamage, item, item2) { }
 }
 class Assassin : Character
 {
-    public Assassin(string name, int health, bool isSelectable, int damage, Items item, Items item2) : base(name, health, isSelectable, damage, item, item2) { }
+    public Assassin(string name, int baseHealth, bool isSelectable, int baseDamage, Items item, Items item2) : base(name, baseHealth, isSelectable, baseDamage, item, item2) { }
 }
 class IronHeart : Character
 {
-    public IronHeart(string name, int health, bool isSelectable, int damage, Items item, Items item2) : base(name, health, isSelectable, damage , item, item2) { }
+    public IronHeart(string name, int baseHealth, bool isSelectable, int baseDamage, Items item, Items item2) : base(name, baseHealth, isSelectable, baseDamage, item, item2) { }
 }
 class Witch : Character
 {
-    public Witch(string name, int health, bool isSelectable, int damage, Items item, Items item2) : base(name, health, isSelectable, damage,  item, item2) { }
+    public Witch(string name, int baseHealth, bool isSelectable, int baseDamage, Items item, Items item2) : base(name, baseHealth, isSelectable, baseDamage, item, item2) { }
 }
 class NetherBlade : Character
 {
-    public NetherBlade(string name, int health, bool isSelectable, int damage, Items item, Items item2) : base(name, health, isSelectable, damage, item, item2) { }
+    public NetherBlade(string name, int baseHealth, bool isSelectable, int baseDamage, Items item, Items item2) : base(name, baseHealth, isSelectable, baseDamage, item, item2) { }
 }
 class Ash : Character
 {
-    public Ash(string name, int health, bool isSelectable, int damage, Items item, Items item2) : base(name, health, isSelectable, damage, item, item2) { }
+    public Ash(string name, int baseHealth, bool isSelectable, int baseDamage, Items item, Items item2) : base(name, baseHealth, isSelectable, baseDamage, item, item2) { }
 }
 #endregion

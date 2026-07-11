@@ -9,7 +9,7 @@ class inventory {
 
     public static void ShowPlayerInventory()
     {
-        Console.WriteLine($"{CharacterList.PlayerCharacter.Name} inventory is:");
+        Console.WriteLine($"{CharacterList.Player.Name} inventory is:");
         int indexNumber = 1;
         foreach (Items item in playerInventory)
         {

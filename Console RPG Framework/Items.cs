@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-interface IInteractable
-{
-    void Use(Character character1, Character character2, Items item);
-}
 
 class ItemsList {
 
     public static List<Items> items = new List<Items> {
-        //name,price,heal,damage
         new Sword("Sword",200,0,8),
         new Bow("Bow & Arrow",150,0,12),
         new Arrow("Stick",11,0,9),
@@ -19,27 +14,22 @@ class ItemsList {
         new HealthPotion("HealthPotion",400,100,0),
         new FastRunPotion("FastRunPotion",650,0,15)
     };
-
 }
-class Items : IInteractable
+class Items
 {
     //every character have different item in their inventory and every item have different skills that affect on final damage or health
     public string Name { get;  set; }
     public int Price { get;  set; }
     public int Heal { get;  set; }
-    public int Damage { get;  set; }
+    public int ItemDamage { get;  set; }
     public Items(string name, int price, int heal, int damage)
     {
         Name = name;
         Price = price;
         Heal = heal;
-        Damage = damage;
+        ItemDamage = damage;
     }
-    public void Use(Character character1, Character character2 ,Items item)
-    {
-        Character.Damage += character1.Item.Damage;
-        Console.WriteLine($"{character1.Name} attacked {character2.Name} with {character1.Item.Name}"); ;
-    }
+
 }
 #region Items
 class Sword : Items

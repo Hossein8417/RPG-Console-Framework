@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Media;
 using System.Threading;
 public enum Flow { 
     Start,
+    Shop,
 	MainMenu,
     CharacterSelect,
     Battle,
@@ -26,6 +28,10 @@ class AppFlow {
             case Flow.Start:
                 AppStart();
                 break;
+
+            //case Flow.Shop:
+            //    Shop.ShopScreen();
+            //    break;
 
             case Flow.MainMenu:
                 MainMenu();
@@ -56,7 +62,7 @@ class AppFlow {
         while (loop)
         {
             bool menuLoop = true;
-            Console.WriteLine("1_Play\n2_Quit Game");
+            Console.WriteLine("1_Play\n2_Shop\n3_Quit Game");
             string input = Console.ReadLine().ToLower().Trim();
             //loop #2
             while (menuLoop)
@@ -67,7 +73,13 @@ class AppFlow {
                     loop = false;
                     break;
                 }
-                else if (input == "quit" || input == "2")
+                else if (input == "shop" || input == "2")
+                {
+                    CurrentFlow = Flow.Shop;
+                    loop = false;
+                    break;
+                }
+                else if (input == "quit" || input == "3")
                 {
                     CurrentFlow = Flow.Quit;
                     loop = false;
@@ -88,83 +100,71 @@ class AppFlow {
         CharacterList.SetAICharacter();
 
         if (CharacterList.userChoose == "1")
-        {   //charcaters must give damage with item1 and defend and heal with item2
+        {   
             inventory.playerInventory.Clear();
-            inventory.playerInventory.Add(ItemsList.items[0]);
-            inventory.playerInventory.Add(ItemsList.items[4]);
+            inventory.playerInventory.Add(CharacterList.Player.Item);
+            inventory.playerInventory.Add(CharacterList.Player.Item2);
         }
         else if (CharacterList.userChoose == "2")
         {
             inventory.playerInventory.Clear();
-            inventory.playerInventory.Add(ItemsList.items[1]);
-            inventory.playerInventory.Add(ItemsList.items[5]);
+            inventory.playerInventory.Add(CharacterList.Player.Item);
+            inventory.playerInventory.Add(CharacterList.Player.Item2);
         }
         else if (CharacterList.userChoose == "3")
         {
             inventory.playerInventory.Clear();
-            inventory.playerInventory.Add(ItemsList.items[3]);
-            inventory.playerInventory.Add(ItemsList.items[4]);
+            inventory.playerInventory.Add(CharacterList.Player.Item);
+            inventory.playerInventory.Add(CharacterList.Player.Item2);
         }
         else if (CharacterList.userChoose == "4")
         {
             inventory.playerInventory.Clear();
-            inventory.playerInventory.Add(ItemsList.items[0]);
-            inventory.playerInventory.Add(ItemsList.items[4]);
+            inventory.playerInventory.Add(CharacterList.Player.Item);
+            inventory.playerInventory.Add(CharacterList.Player.Item2);
         }
         else if (CharacterList.userChoose == "5")
         {
             inventory.playerInventory.Clear();
-            inventory.playerInventory.Add(ItemsList.items[3]);
-            inventory.playerInventory.Add(ItemsList.items[4]);
+            inventory.playerInventory.Add(CharacterList.Player.Item);
+            inventory.playerInventory.Add(CharacterList.Player.Item2);
         }
         else if (CharacterList.userChoose == "6")
         {
             inventory.playerInventory.Clear();
-            inventory.playerInventory.Add(ItemsList.items[1]);
-            inventory.playerInventory.Add(ItemsList.items[5]);
+            inventory.playerInventory.Add(CharacterList.Player.Item);
+            inventory.playerInventory.Add(CharacterList.Player.Item2);
         }
         else Console.WriteLine("Select a valid character!");
 
+        
         CurrentFlow = Flow.Battle;
     }
     public static void Battle()
     {
-        Console.WriteLine($"{CharacterList.PlayerCharacter.Name} vs {CharacterList.AI.Name}");
+        Console.WriteLine($"{CharacterList.Player.Name} vs {CharacterList.AI.Name}");
 
         inventory.ShowPlayerInventory();
         inventory.ShowAiInventory();
 
+        CharacterList.Player.CalculateHealth(CharacterList.Player);
+        CharacterList.AI.CalculateHealth(CharacterList.AI);
+        CharacterList.Player.CalculateDamage(CharacterList.Player);
+        CharacterList.AI.CalculateDamage(CharacterList.AI);
         for (int round = 1; round <= 6; round++)
         {
             Console.WriteLine($"Round {round}");
 
-            if (CharacterList.PlayerCharacter.Health <= 0)
-            {
-                Console.WriteLine("ai win");
-            }
-
-            if (CharacterList.AI.Health <= 0)
-            {
-                Console.WriteLine("player win");
-            }
-
-            //if (CharacterList.AI.Health != 0 || CharacterList.PlayerCharacter.Health !=0)
-            //{
-            //    Console.WriteLine("Tie");
-            //}
-
             if (round == 1 || round == 3 || round == 5)//player attacks
-            {  
-                CharacterList.PlayerCharacter.Attack(CharacterList.PlayerCharacter, CharacterList.AI);
-                CharacterList.AI.Defend(CharacterList.AI, CharacterList.PlayerCharacter);
-                CharacterList.AI.Health -= CharacterList.PlayerCharacter.Item.Damage;
+            {
+                CharacterList.Player.Attack(CharacterList.Player, CharacterList.AI);
+                CharacterList.AI.Defend(CharacterList.AI, CharacterList.Player);
             }
 
             else if (round == 2 || round == 4 || round == 6)//ai attacks
             {
-                CharacterList.AI.Attack(CharacterList.AI, CharacterList.PlayerCharacter);
-                CharacterList.PlayerCharacter.Defend(CharacterList.PlayerCharacter, CharacterList.AI);
-                CharacterList.PlayerCharacter.Health -= Character.Damage;
+                CharacterList.AI.Attack(CharacterList.AI, CharacterList.Player);
+                CharacterList.Player.Defend(CharacterList.Player,CharacterList.AI);
             }
 
             Thread.Sleep(1500);
