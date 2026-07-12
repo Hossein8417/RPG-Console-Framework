@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Threading;
 using System.Threading.Tasks;
 public enum Flow { 
     Start,
-    Shop,
 	MainMenu,
     CharacterSelect,
     Battle,
@@ -44,7 +42,7 @@ class AppFlow {
     }
     public static void AppStart() {
         Console.WriteLine("Loading app,Please wait!");
-        Delayer(1500);
+        Delayer(3000);
         //Console.Clear();
         CurrentFlow = Flow.MainMenu;
     }
@@ -65,18 +63,14 @@ class AppFlow {
                     loop = false;
                     break;
                 }
-                else if (input == "shop" || input == "2")
-                {
-                    CurrentFlow = Flow.Shop;
-                    loop = false;
-                    break;
-                }
+
                 else if (input == "quit" || input == "3")
                 {
                     CurrentFlow = Flow.Quit;
                     loop = false;
                     break;
                 }
+
                 else
                 {
                     Console.WriteLine("Please enter a valid option");
