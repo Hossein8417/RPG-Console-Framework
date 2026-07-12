@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Media;
-using System.Threading;
+using System.Threading.Tasks;
 public enum Flow { 
     Start,
-    Shop,
 	MainMenu,
     CharacterSelect,
     Battle,
     Quit
 }
+//code must refactored and must use SOLID and Design pattenrs(when possible)
 
 class AppFlow {
 
@@ -43,6 +42,7 @@ class AppFlow {
     }
     public static void AppStart() {
         Console.WriteLine("Loading app,Please wait!");
+        Delayer(3000);
         //Console.Clear();
         CurrentFlow = Flow.MainMenu;
     }
@@ -63,18 +63,14 @@ class AppFlow {
                     loop = false;
                     break;
                 }
-                else if (input == "shop" || input == "2")
-                {
-                    CurrentFlow = Flow.Shop;
-                    loop = false;
-                    break;
-                }
+
                 else if (input == "quit" || input == "3")
                 {
                     CurrentFlow = Flow.Quit;
                     loop = false;
                     break;
                 }
+
                 else
                 {
                     Console.WriteLine("Please enter a valid option");
@@ -157,7 +153,7 @@ class AppFlow {
                 CharacterList.Player.Defend(CharacterList.Player,CharacterList.AI);
             }
 
-            Thread.Sleep(1500);
+            Delayer(1500);
             //Console.Clear();
         }
         ReLoopApp();
@@ -180,6 +176,9 @@ class AppFlow {
             }
         }
         else Console.WriteLine("Try String form of input");
+    }
+    async static void Delayer(int time) {
+        await Task.Delay(time);
     }
     public static void Quit()
     {
