@@ -9,11 +9,6 @@ public enum Flow {
     Battle,
     Quit
 }
-//all of thread.sleep() lines must delete and use correct method for it
-//code must refactored and must use SOLID and Design pattenrs(when possible)
-//quest system must add to app 
-//shop system must add to app
-//skills must affect on damages and heals
 
 class AppFlow {
 
@@ -28,10 +23,6 @@ class AppFlow {
             case Flow.Start:
                 AppStart();
                 break;
-
-            //case Flow.Shop:
-            //    Shop.ShopScreen();
-            //    break;
 
             case Flow.MainMenu:
                 MainMenu();
@@ -52,7 +43,6 @@ class AppFlow {
     }
     public static void AppStart() {
         Console.WriteLine("Loading app,Please wait!");
-        //Thread.Sleep(1700);
         //Console.Clear();
         CurrentFlow = Flow.MainMenu;
     }
