@@ -23,4 +23,4 @@ class AppInterface
     public static void HealthUpdateDisplayer(Character character) {
         Console.WriteLine($"{character.Name} health is : {character.health}");
     }
-}
+} 

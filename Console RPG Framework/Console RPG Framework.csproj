@@ -49,6 +49,7 @@
     <Compile Include="GenerateRandomIndex.cs" />
     <Compile Include="Inventory.cs" />
     <Compile Include="Items.cs" />
+    <Compile Include="ItemsList.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
