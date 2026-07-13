@@ -1,15 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-//player => AI => characters => freeCharacters
+//player => AI => characters => freeCharacters to dont get null ref
+
+//logic must separate from app interface
+
+// every method must do one think
+//every class must have relevant content
+// logic must call a interface and interface must contact appinterface
+//app interface can directly call logic but opposite not!
 interface IAbillity
 {
     void Attack(Character player, Character ai);
     void Defend(Character player, Character ai);
 }
 class CharactersDataBase {
-
-    public static string userChoose;
-    public static int userChooseIndex;
 
     public static Character Player;
 
@@ -28,13 +32,13 @@ class CharactersDataBase {
     
     public static void GetPlayerCharacter()
     {
-        while (true) {
-            Console.WriteLine("For next content please select character by number's (1-6) : ");
-            Console.WriteLine($"Select Character:\n1-{characters[0].Name}\n2-{characters[1].Name}\n3-{characters[2].Name}" +
-                $"\n4-{characters[3].Name}\n5-{characters[4].Name}\n6-{characters[5].Name}");
-            userChoose = Console.ReadLine().Trim();
+        // this must change!
+        AppInterface.CharacterSelect();
 
-            bool isValid = int.TryParse(userChoose, out userChooseIndex);
+        bool isValid = int.TryParse(AppInterface.userChoose, out AppInterface.userChooseIndex);
+        while (true)
+        {
+
             if (isValid)
             {
                 SetPlayerCharacter();
@@ -46,7 +50,7 @@ class CharactersDataBase {
 
     public static void SetPlayerCharacter() {
         
-        Player = characters[userChooseIndex - 1];
+        Player = characters[AppInterface.userChooseIndex - 1];
         Player.IsSelectable = false;
     }
 
