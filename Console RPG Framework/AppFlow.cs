@@ -7,38 +7,12 @@ class AppFlow {
 
     public static bool loop = true;
 
-    public static Flow CurrentFlow = Flow.Start;
 
-    public static void SectionSwitcher() {
-
-        switch (CurrentFlow)
-        {
-            case Flow.Start:
-                AppStart();
-                break;
-
-            case Flow.MainMenu:
-                MainMenu();
-                break;
-
-            case Flow.CharacterSelect:
-                CharactersSelect();
-                break;
-
-            case Flow.Battle:
-                Battle();
-                break;
-
-            case Flow.Quit:
-                Quit();
-                break;
-        }
-    }
     public static void AppStart() {
         Console.WriteLine("Loading app,Please wait!");
         Delayer(3000);
         //Console.Clear();
-        CurrentFlow = Flow.MainMenu;
+        CurrentFlow.CurrentState = Flow.MainMenu;
     }
     public static void MainMenu() {
         //loop #1
@@ -53,14 +27,14 @@ class AppFlow {
             {
                 if (input == "play" || input == "1")
                 {
-                    CurrentFlow = Flow.CharacterSelect;
+                    CurrentFlow.CurrentState = Flow.CharacterSelect;
                     loop = false;
                     break;
                 }
 
                 else if (input == "quit" || input == "2")
                 {
-                    CurrentFlow = Flow.Quit;
+                    CurrentFlow.CurrentState = Flow.Quit;
                     loop = false;
                     break;
                 }
@@ -78,8 +52,8 @@ class AppFlow {
         Player.GetCharacter();
 
         AI.SetCharacter();
-        
-        CurrentFlow = Flow.Battle;
+
+        CurrentFlow.CurrentState = Flow.Battle;
     }
     public static void Battle()
     {
@@ -127,12 +101,12 @@ class AppFlow {
         {
             if (appLoopStart == 'y')
             {
-                CurrentFlow = Flow.CharacterSelect;
+                CurrentFlow.CurrentState = Flow.CharacterSelect;
                 
             }
             if (appLoopStart == 'n')
             {
-                CurrentFlow = Flow.Quit;
+                CurrentFlow.CurrentState = Flow.Quit;
             }
         }
         else Console.WriteLine("Try String form of input");

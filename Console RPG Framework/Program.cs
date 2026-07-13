@@ -8,7 +8,7 @@ class Program {
         {
             while (AppLoop)
             {
-                AppFlow.SectionSwitcher();
+                StateMachine.Machine();
             }
         }
         catch (Exception e)

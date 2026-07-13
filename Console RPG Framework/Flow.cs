@@ -6,3 +6,8 @@
     Battle,
     Quit
 }
+
+class CurrentFlow {
+
+    public static Flow CurrentState = Flow.Start;
+}
