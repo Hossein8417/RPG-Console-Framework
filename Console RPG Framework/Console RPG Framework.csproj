@@ -48,7 +48,7 @@
     <Compile Include="Characters.cs" />
     <Compile Include="GenerateRandomIndex.cs" />
     <Compile Include="Inventory.cs" />
-    <Compile Include="Items.cs" />
+    <Compile Include="ItemsDataBase.cs" />
     <Compile Include="ItemsList.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
