@@ -13,9 +13,8 @@ interface IAbillity
     void Attack(Character player, Character ai);
     void Defend(Character player, Character ai);
 }
-class CharactersDataBase {
 
-    public static Character Player;
+class CharactersDataBase {
 
     public static Character AI;
 
@@ -30,30 +29,6 @@ class CharactersDataBase {
 
     public static List<Character> freeCharacters = new List<Character>();
     
-    public static void GetPlayerCharacter()
-    {
-        // this must change!
-        AppInterface.CharacterSelect();
-
-        bool isValid = int.TryParse(AppInterface.userChoose, out AppInterface.userChooseIndex);
-        while (true)
-        {
-
-            if (isValid)
-            {
-                SetPlayerCharacter();
-                break;
-            }
-            else Console.WriteLine("Enter a valid type!!");
-        }
-    }
-
-    public static void SetPlayerCharacter() {
-        
-        Player = characters[AppInterface.userChooseIndex - 1];
-        Player.IsSelectable = false;
-    }
-
     public static void GetAICharacter() {
         foreach (Character character in characters)
         {
@@ -97,6 +72,7 @@ class Character : IAbillity
         Console.WriteLine($"{character1.Name} attack {character2.Name}");
 
     }
+
     public void Defend(Character character1, Character character2)
     {
         Console.WriteLine($"{character1.Name} Defending himself from {character2.Name}");
@@ -112,6 +88,7 @@ class Character : IAbillity
     public void CalculateDamage(Character character) { 
         damage = character.BaseDamage + character.Item.ItemDamage;
     }
+
     public void UpdateHealth(Character character1, Character character2) { 
         character1.health -= character2.damage;
     }
