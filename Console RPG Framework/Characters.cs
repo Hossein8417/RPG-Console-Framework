@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+//player => AI => characters => freeCharacters
 interface IAbillity
 {
     void Attack(Character player, Character ai);
     void Defend(Character player, Character ai);
 }
-class CharacterDataBase {
+class CharactersDataBase {
 
     public static string userChoose;
     public static int userChooseIndex;
-
-    static Random random = new Random();
 
     public static Character Player;
 
@@ -64,9 +63,8 @@ class CharacterDataBase {
     public static void SetAICharacter()
     {
         GetAICharacter();
-        
-        int aiCharaceterIndex = random.Next(0, freeCharacters.Count);
-        AI = freeCharacters[aiCharaceterIndex];
+
+        AI = freeCharacters[GenerateRandomIndex.aiCharaceterIndex];
     }    
 }
 class Character : IAbillity

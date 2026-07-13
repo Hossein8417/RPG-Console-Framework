@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-
-class inventory {
+class Inventory {
     public static void ShowCharacterInventory(Character character)
     {
         Console.WriteLine($"{character.Name} inventory is:");

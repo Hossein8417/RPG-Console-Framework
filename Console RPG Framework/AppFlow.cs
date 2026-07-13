@@ -81,37 +81,37 @@ class AppFlow {
     }
     public static void CharactersSelect()
     {
-        CharacterDataBase.GetPlayerCharacter();
+        CharactersDataBase.GetPlayerCharacter();
 
-        CharacterDataBase.SetAICharacter();
+        CharactersDataBase.SetAICharacter();
         
         CurrentFlow = Flow.Battle;
     }
     public static void Battle()
     {
-        Console.WriteLine($"{CharacterDataBase.Player.Name} vs {CharacterDataBase.AI.Name}");
+        Console.WriteLine($"{CharactersDataBase.Player.Name} vs {CharactersDataBase.AI.Name}");
 
-        inventory.ShowCharacterInventory(CharacterDataBase.Player);
-        inventory.ShowCharacterInventory(CharacterDataBase.AI);
+        Inventory.ShowCharacterInventory(CharactersDataBase.Player);
+        Inventory.ShowCharacterInventory(CharactersDataBase.AI);
 
-        CharacterDataBase.Player.CalculateHealth(CharacterDataBase.Player);
-        CharacterDataBase.AI.CalculateHealth(CharacterDataBase.AI);
-        CharacterDataBase.Player.CalculateDamage(CharacterDataBase.Player);
-        CharacterDataBase.AI.CalculateDamage(CharacterDataBase.AI);
+        CharactersDataBase.Player.CalculateHealth(CharactersDataBase.Player);
+        CharactersDataBase.AI.CalculateHealth(CharactersDataBase.AI);
+        CharactersDataBase.Player.CalculateDamage(CharactersDataBase.Player);
+        CharactersDataBase.AI.CalculateDamage(CharactersDataBase.AI);
         for (int round = 1; round <= 6; round++)
         {
             Console.WriteLine($"Round {round}");
 
             if (round == 1 || round == 3 || round == 5)//player attacks
             {
-                CharacterDataBase.Player.Attack(CharacterDataBase.Player, CharacterDataBase.AI);
-                CharacterDataBase.AI.Defend(CharacterDataBase.AI, CharacterDataBase.Player);
+                CharactersDataBase.Player.Attack(CharactersDataBase.Player, CharactersDataBase.AI);
+                CharactersDataBase.AI.Defend(CharactersDataBase.AI, CharactersDataBase.Player);
             }
 
             else if (round == 2 || round == 4 || round == 6)//ai attacks
             {
-                CharacterDataBase.AI.Attack(CharacterDataBase.AI, CharacterDataBase.Player);
-                CharacterDataBase.Player.Defend(CharacterDataBase.Player,CharacterDataBase.AI);
+                CharactersDataBase.AI.Attack(CharactersDataBase.AI, CharactersDataBase.Player);
+                CharactersDataBase.Player.Defend(CharactersDataBase.Player,CharactersDataBase.AI);
             }
 
             Delayer(1500);

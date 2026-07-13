@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="AppFlow.cs" />
     <Compile Include="Characters.cs" />
+    <Compile Include="GenerateRandomIndex.cs" />
     <Compile Include="Inventory.cs" />
     <Compile Include="Items.cs" />
     <Compile Include="Program.cs" />
