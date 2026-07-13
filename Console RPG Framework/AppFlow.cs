@@ -81,42 +81,42 @@ class AppFlow {
     }
     public static void CharactersSelect()
     {
-        Player.SetCharacter();
+        Player.GetCharacter();
 
-        CharactersDataBase.SetAICharacter();
+        AI.SetCharacter();
         
         CurrentFlow = Flow.Battle;
     }
     public static void Battle()
     {
-        Console.WriteLine($"{Player.PlayerCharacter.Name} vs {CharactersDataBase.AI.Name}");
+        Console.WriteLine($"{Player.PlayerCharacter.Name} vs {AI.AiCharacter.Name}");
 
         Inventory.ShowCharacterInventory(Player.PlayerCharacter);
-        Inventory.ShowCharacterInventory(CharactersDataBase.AI);
+        Inventory.ShowCharacterInventory(AI.AiCharacter);
 
         AppInterface.HealthDisplayer(Player.PlayerCharacter);
-        AppInterface.HealthDisplayer(CharactersDataBase.AI);
+        AppInterface.HealthDisplayer(AI.AiCharacter);
 
         Player.PlayerCharacter.CalculateDamage(Player.PlayerCharacter);
-        CharactersDataBase.AI.CalculateDamage(CharactersDataBase.AI);
+        AI.AiCharacter.CalculateDamage(AI.AiCharacter);
 
         for (int round = 1; round <= 6; round++)
         {
             Console.WriteLine($"Round {round}");
 
             AppInterface.HealthUpdateDisplayer(Player.PlayerCharacter);
-            AppInterface.HealthUpdateDisplayer(CharactersDataBase.AI);
+            AppInterface.HealthUpdateDisplayer(AI.AiCharacter);
 
             if (round == 1 || round == 3 || round == 5)//player attacks
             {
-                Player.PlayerCharacter.Attack(Player.PlayerCharacter, CharactersDataBase.AI);
-                CharactersDataBase.AI.Defend(CharactersDataBase.AI, Player.PlayerCharacter);
+                Player.PlayerCharacter.Attack(Player.PlayerCharacter, AI.AiCharacter);
+                AI.AiCharacter.Defend(AI.AiCharacter, Player.PlayerCharacter);
             }
 
             else if (round == 2 || round == 4 || round == 6)//ai attacks
             {
-                CharactersDataBase.AI.Attack(CharactersDataBase.AI, Player.PlayerCharacter);
-                Player.PlayerCharacter.Defend(Player.PlayerCharacter,CharactersDataBase.AI);
+                AI.AiCharacter.Attack(AI.AiCharacter, Player.PlayerCharacter);
+                Player.PlayerCharacter.Defend(Player.PlayerCharacter,AI.AiCharacter);
             }
 
             Delayer(1500);

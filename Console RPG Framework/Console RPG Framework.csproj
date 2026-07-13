@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AI.cs" />
     <Compile Include="AppFlow.cs" />
     <Compile Include="AppInterface.cs" />
     <Compile Include="Characters.cs" />

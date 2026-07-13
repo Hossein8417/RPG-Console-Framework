@@ -16,7 +16,7 @@ interface IAbillity
 
 class CharactersDataBase {
 
-    public static Character AI;
+    
 
     public static List<Character> characters = new List<Character> {
         new Witcher("Witcher",100, true, 3, ItemsList.items[1], ItemsList.items[4]),
@@ -29,22 +29,7 @@ class CharactersDataBase {
 
     public static List<Character> freeCharacters = new List<Character>();
     
-    public static void GetAICharacter() {
-        foreach (Character character in characters)
-        {
-            if (character.IsSelectable == true)
-            {
-                freeCharacters.Add(character);
-            }
-        }
-    }
-
-    public static void SetAICharacter()
-    {
-        GetAICharacter();
-
-        AI = freeCharacters[GenerateRandomIndex.aiCharaceterIndex];
-    }    
+   
 }
 class Character : IAbillity
 {
