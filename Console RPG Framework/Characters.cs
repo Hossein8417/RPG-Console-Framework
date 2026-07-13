@@ -77,12 +77,12 @@ class Character : IAbillity
     public int BaseHealth { get;  set; }
     public int BaseDamage { get; set; }
     public bool IsSelectable { get;  set; }
-    public Items Item { get; set; }
-    public Items Item2 { get; set; }
+    public ItemsDataBase Item { get; set; }
+    public ItemsDataBase Item2 { get; set; }
 
     public int health;
     public int damage;
-    public Character(string name, int baseHealth, bool isSelectable, int baseDamage, Items item, Items items2)
+    public Character(string name, int baseHealth, bool isSelectable, int baseDamage, ItemsDataBase item, ItemsDataBase items2)
     {
         Name = name;
         BaseHealth = baseHealth;
@@ -119,26 +119,26 @@ class Character : IAbillity
 #region Characters
 class Witcher : Character
 {
-    public Witcher(string name, int baseHealth, bool isSelectable, int baseDamage, Items item, Items item2) : base(name, baseHealth, isSelectable, baseDamage, item, item2) { }
+    public Witcher(string name, int baseHealth, bool isSelectable, int baseDamage, ItemsDataBase item, ItemsDataBase item2) : base(name, baseHealth, isSelectable, baseDamage, item, item2) { }
 }
 class Assassin : Character
 {
-    public Assassin(string name, int baseHealth, bool isSelectable, int baseDamage, Items item, Items item2) : base(name, baseHealth, isSelectable, baseDamage, item, item2) { }
+    public Assassin(string name, int baseHealth, bool isSelectable, int baseDamage, ItemsDataBase item, ItemsDataBase item2) : base(name, baseHealth, isSelectable, baseDamage, item, item2) { }
 }
 class IronHeart : Character
 {
-    public IronHeart(string name, int baseHealth, bool isSelectable, int baseDamage, Items item, Items item2) : base(name, baseHealth, isSelectable, baseDamage, item, item2) { }
+    public IronHeart(string name, int baseHealth, bool isSelectable, int baseDamage, ItemsDataBase item, ItemsDataBase item2) : base(name, baseHealth, isSelectable, baseDamage, item, item2) { }
 }
 class Witch : Character
 {
-    public Witch(string name, int baseHealth, bool isSelectable, int baseDamage, Items item, Items item2) : base(name, baseHealth, isSelectable, baseDamage, item, item2) { }
+    public Witch(string name, int baseHealth, bool isSelectable, int baseDamage, ItemsDataBase item, ItemsDataBase item2) : base(name, baseHealth, isSelectable, baseDamage, item, item2) { }
 }
 class NetherBlade : Character
 {
-    public NetherBlade(string name, int baseHealth, bool isSelectable, int baseDamage, Items item, Items item2) : base(name, baseHealth, isSelectable, baseDamage, item, item2) { }
+    public NetherBlade(string name, int baseHealth, bool isSelectable, int baseDamage, ItemsDataBase item, ItemsDataBase item2) : base(name, baseHealth, isSelectable, baseDamage, item, item2) { }
 }
 class Ash : Character
 {
-    public Ash(string name, int baseHealth, bool isSelectable, int baseDamage, Items item, Items item2) : base(name, baseHealth, isSelectable, baseDamage, item, item2) { }
+    public Ash(string name, int baseHealth, bool isSelectable, int baseDamage, ItemsDataBase item, ItemsDataBase item2) : base(name, baseHealth, isSelectable, baseDamage, item, item2) { }
 }
 #endregion

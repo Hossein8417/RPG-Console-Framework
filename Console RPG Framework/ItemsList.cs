@@ -3,7 +3,7 @@
 class ItemsList
 {
 
-    public static List<Items> items = new List<Items> {
+    public static List<ItemsDataBase> items = new List<ItemsDataBase> {
         new Sword("Sword",200,0,8),
         new Bow("Bow & Arrow",150,0,12),
         new Arrow("Stick",11,0,9),

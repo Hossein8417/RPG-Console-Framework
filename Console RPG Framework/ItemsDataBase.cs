@@ -1,10 +1,10 @@
-﻿class Items
+﻿class ItemsDataBase
 {
     public string Name { get;  set; }
     public int Price { get;  set; }
     public int Heal { get;  set; }
     public int ItemDamage { get;  set; }
-    public Items(string name, int price, int heal, int damage)
+    public ItemsDataBase(string name, int price, int heal, int damage)
     {
         Name = name;
         Price = price;
@@ -14,39 +14,39 @@
 
 }
 #region Items
-class Sword : Items
+class Sword : ItemsDataBase
 {
     public Sword(string name, int price, int heal, int damage) : base(name, price, heal, damage) { }
 }
-class Bow : Items
+class Bow : ItemsDataBase
 {
     public Bow(string name, int price, int heal, int damage) : base(name, price, heal, damage) { }
 }
-class Arrow : Items
+class Arrow : ItemsDataBase
 {
     public Arrow(string name, int price, int heal, int damage) : base(name, price, heal, damage) { }
 }
-class Axe : Items
+class Axe : ItemsDataBase
 {
     public Axe(string name, int price, int heal, int damage) : base(name, price, heal, damage) { }
 }
-class Sheild : Items
+class Sheild : ItemsDataBase
 {
     public Sheild(string name, int price, int heal, int damage) : base(name, price, heal, damage) { }
 }
-class IronArmor : Items
+class IronArmor : ItemsDataBase
 {
     public IronArmor(string name, int price, int heal, int damage) : base(name, price, heal, damage) { }
 }
-class GoldArmor : Items
+class GoldArmor : ItemsDataBase
 {
     public GoldArmor(string name, int price, int heal, int damage) : base(name, price, heal, damage) { }
 }
-class HealthPotion : Items
+class HealthPotion : ItemsDataBase
 {
     public HealthPotion(string name, int price, int heal, int damage) : base(name, price, heal, damage) { }
 }
-class FastRunPotion : Items
+class FastRunPotion : ItemsDataBase
 {
     public FastRunPotion(string name, int price, int heal, int damage) : base(name, price, heal, damage) { }
 }
