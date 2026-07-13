@@ -94,13 +94,18 @@ class AppFlow {
         Inventory.ShowCharacterInventory(CharactersDataBase.Player);
         Inventory.ShowCharacterInventory(CharactersDataBase.AI);
 
-        CharactersDataBase.Player.CalculateHealth(CharactersDataBase.Player);
-        CharactersDataBase.AI.CalculateHealth(CharactersDataBase.AI);
+        AppInterface.HealthDisplayer(CharactersDataBase.Player);
+        AppInterface.HealthDisplayer(CharactersDataBase.AI);
+
         CharactersDataBase.Player.CalculateDamage(CharactersDataBase.Player);
         CharactersDataBase.AI.CalculateDamage(CharactersDataBase.AI);
+
         for (int round = 1; round <= 6; round++)
         {
             Console.WriteLine($"Round {round}");
+
+            AppInterface.HealthUpdateDisplayer(CharactersDataBase.Player);
+            AppInterface.HealthUpdateDisplayer(CharactersDataBase.AI);
 
             if (round == 1 || round == 3 || round == 5)//player attacks
             {

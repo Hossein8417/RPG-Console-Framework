@@ -80,8 +80,8 @@ class Character : IAbillity
     public Items Item { get; set; }
     public Items Item2 { get; set; }
 
-    int health;
-    int damage;
+    public int health;
+    public int damage;
     public Character(string name, int baseHealth, bool isSelectable, int baseDamage, Items item, Items items2)
     {
         Name = name;
@@ -104,9 +104,9 @@ class Character : IAbillity
         UpdateHealth(character1, character2);
 
     }
+
     public void CalculateHealth(Character character) {
         health = character.BaseHealth + character.Item2.Heal;
-        Console.WriteLine($"{character.Name} health is {health}.(Before start game)");
     }
     
     public void CalculateDamage(Character character) { 
@@ -114,7 +114,6 @@ class Character : IAbillity
     }
     public void UpdateHealth(Character character1, Character character2) { 
         character1.health -= character2.damage;
-        Console.WriteLine($"{character1.Name} health is {health}");
     }
 }
 #region Characters

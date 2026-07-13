@@ -15,4 +15,12 @@ class AppInterface
 
         
     }
+
+    public static void HealthDisplayer(Character character) {
+        character.CalculateHealth(character);
+        Console.WriteLine($"{character.Name} health before start match is : {character.health}");
+    }
+    public static void HealthUpdateDisplayer(Character character) {
+        Console.WriteLine($"{character.Name} health is : {character.health}");
+    }
 }
