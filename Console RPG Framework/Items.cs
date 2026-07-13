@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-class ItemsList
+class Items
 {
 
     public static List<ItemsDataBase> items = new List<ItemsDataBase> {

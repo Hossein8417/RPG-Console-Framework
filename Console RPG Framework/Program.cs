@@ -1,6 +1,4 @@
 ﻿using System;
-using static System.Net.Mime.MediaTypeNames;
-
 class Program {
     public static bool AppLoop = true;
     public static void Main(string[] args)

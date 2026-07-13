@@ -2,7 +2,7 @@
 
 class Player {
 
-    public static Character PlayerCharacter;
+    public static CharactersDataBase PlayerCharacter;
 
     public static void GetCharacter()
     {
@@ -25,7 +25,7 @@ class Player {
     public static void SetCharacter()
     {
 
-        PlayerCharacter = CharactersDataBase.characters[AppInterface.userChooseIndex - 1];
+        PlayerCharacter = Characters.characters[AppInterface.userChooseIndex - 1];
         PlayerCharacter.IsSelectable = false;
     }
 

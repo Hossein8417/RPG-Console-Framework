@@ -1,13 +1,13 @@
 ﻿class AI {
-    public static Character AiCharacter;
+    public static CharactersDataBase AiCharacter;
 
     public static void GetCharacter()
     {
-        foreach (Character character in CharactersDataBase.characters)
+        foreach (CharactersDataBase character in Characters.characters)
         {
             if (character.IsSelectable == true)
             {
-                CharactersDataBase.freeCharacters.Add(character);
+                Characters.freeCharacters.Add(character);
             }
         }
     }
@@ -16,6 +16,7 @@
     {
         GetCharacter();
 
-        AiCharacter = CharactersDataBase.freeCharacters[GenerateRandomIndex.aiCharaceterIndex];
+        AiCharacter = Characters.freeCharacters[GenerateRandomIndex.aiCharaceterIndex];
+
     }
 }

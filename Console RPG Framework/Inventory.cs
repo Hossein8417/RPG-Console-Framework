@@ -1,6 +1,6 @@
 ﻿using System;
 class Inventory {
-    public static void ShowCharacterInventory(Character character)
+    public static void ShowCharacterInventory(CharactersDataBase character)
     {
         Console.WriteLine($"{character.Name} inventory is:");
 

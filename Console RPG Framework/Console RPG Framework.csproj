@@ -47,10 +47,11 @@
     <Compile Include="AppFlow.cs" />
     <Compile Include="AppInterface.cs" />
     <Compile Include="Characters.cs" />
+    <Compile Include="CharactersDataBase.cs" />
     <Compile Include="GenerateRandomIndex.cs" />
     <Compile Include="Inventory.cs" />
     <Compile Include="ItemsDataBase.cs" />
-    <Compile Include="ItemsList.cs" />
+    <Compile Include="Items.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
