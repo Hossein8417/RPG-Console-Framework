@@ -5,7 +5,7 @@ interface IAbillity
     void Attack(Character player, Character ai);
     void Defend(Character player, Character ai);
 }
-class CharacterList {
+class CharacterDataBase {
 
     public static string userChoose;
     public static int userChooseIndex;

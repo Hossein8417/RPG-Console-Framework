@@ -28,7 +28,7 @@ class AppFlow {
                 break;
 
             case Flow.CharacterSelect:
-                CharacterSelect();
+                CharactersSelect();
                 break;
 
             case Flow.Battle:
@@ -52,7 +52,7 @@ class AppFlow {
         while (loop)
         {
             bool menuLoop = true;
-            Console.WriteLine("1_Play\n2_Shop\n3_Quit Game");
+            Console.WriteLine("1_Play\n2_Quit Game");
             string input = Console.ReadLine().ToLower().Trim();
             //loop #2
             while (menuLoop)
@@ -64,7 +64,7 @@ class AppFlow {
                     break;
                 }
 
-                else if (input == "quit" || input == "3")
+                else if (input == "quit" || input == "2")
                 {
                     CurrentFlow = Flow.Quit;
                     loop = false;
@@ -79,78 +79,39 @@ class AppFlow {
             }
         }
     }
-    public static void CharacterSelect()
+    public static void CharactersSelect()
     {
-        CharacterList.GetPlayerCharacter();
+        CharacterDataBase.GetPlayerCharacter();
 
-        CharacterList.SetAICharacter();
-
-        if (CharacterList.userChoose == "1")
-        {   
-            inventory.playerInventory.Clear();
-            inventory.playerInventory.Add(CharacterList.Player.Item);
-            inventory.playerInventory.Add(CharacterList.Player.Item2);
-        }
-        else if (CharacterList.userChoose == "2")
-        {
-            inventory.playerInventory.Clear();
-            inventory.playerInventory.Add(CharacterList.Player.Item);
-            inventory.playerInventory.Add(CharacterList.Player.Item2);
-        }
-        else if (CharacterList.userChoose == "3")
-        {
-            inventory.playerInventory.Clear();
-            inventory.playerInventory.Add(CharacterList.Player.Item);
-            inventory.playerInventory.Add(CharacterList.Player.Item2);
-        }
-        else if (CharacterList.userChoose == "4")
-        {
-            inventory.playerInventory.Clear();
-            inventory.playerInventory.Add(CharacterList.Player.Item);
-            inventory.playerInventory.Add(CharacterList.Player.Item2);
-        }
-        else if (CharacterList.userChoose == "5")
-        {
-            inventory.playerInventory.Clear();
-            inventory.playerInventory.Add(CharacterList.Player.Item);
-            inventory.playerInventory.Add(CharacterList.Player.Item2);
-        }
-        else if (CharacterList.userChoose == "6")
-        {
-            inventory.playerInventory.Clear();
-            inventory.playerInventory.Add(CharacterList.Player.Item);
-            inventory.playerInventory.Add(CharacterList.Player.Item2);
-        }
-        else Console.WriteLine("Select a valid character!");
-
+        CharacterDataBase.SetAICharacter();
         
         CurrentFlow = Flow.Battle;
     }
     public static void Battle()
     {
-        Console.WriteLine($"{CharacterList.Player.Name} vs {CharacterList.AI.Name}");
+        Console.WriteLine($"{CharacterDataBase.Player.Name} vs {CharacterDataBase.AI.Name}");
 
-        inventory.ShowPlayerInventory();
-        inventory.ShowAiInventory();
+        inventory.ShowCharacterInventory(CharacterDataBase.Player);
+        inventory.ShowCharacterInventory(CharacterDataBase.AI);
 
-        CharacterList.Player.CalculateHealth(CharacterList.Player);
-        CharacterList.AI.CalculateHealth(CharacterList.AI);
-        CharacterList.Player.CalculateDamage(CharacterList.Player);
-        CharacterList.AI.CalculateDamage(CharacterList.AI);
+        CharacterDataBase.Player.CalculateHealth(CharacterDataBase.Player);
+        CharacterDataBase.AI.CalculateHealth(CharacterDataBase.AI);
+        CharacterDataBase.Player.CalculateDamage(CharacterDataBase.Player);
+        CharacterDataBase.AI.CalculateDamage(CharacterDataBase.AI);
         for (int round = 1; round <= 6; round++)
         {
             Console.WriteLine($"Round {round}");
 
             if (round == 1 || round == 3 || round == 5)//player attacks
             {
-                CharacterList.Player.Attack(CharacterList.Player, CharacterList.AI);
-                CharacterList.AI.Defend(CharacterList.AI, CharacterList.Player);
+                CharacterDataBase.Player.Attack(CharacterDataBase.Player, CharacterDataBase.AI);
+                CharacterDataBase.AI.Defend(CharacterDataBase.AI, CharacterDataBase.Player);
             }
 
             else if (round == 2 || round == 4 || round == 6)//ai attacks
             {
-                CharacterList.AI.Attack(CharacterList.AI, CharacterList.Player);
-                CharacterList.Player.Defend(CharacterList.Player,CharacterList.AI);
+                CharacterDataBase.AI.Attack(CharacterDataBase.AI, CharacterDataBase.Player);
+                CharacterDataBase.Player.Defend(CharacterDataBase.Player,CharacterDataBase.AI);
             }
 
             Delayer(1500);
