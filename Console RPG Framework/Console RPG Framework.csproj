@@ -48,6 +48,7 @@
     <Compile Include="AppInterface.cs" />
     <Compile Include="Characters.cs" />
     <Compile Include="CharactersDataBase.cs" />
+    <Compile Include="Flow.cs" />
     <Compile Include="GenerateRandomIndex.cs" />
     <Compile Include="Inventory.cs" />
     <Compile Include="ItemsDataBase.cs" />

@@ -1,12 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-public enum Flow { 
-    Start,
-	MainMenu,
-    CharacterSelect,
-    Battle,
-    Quit
-}
+
 //code must refactored and must use SOLID and Design pattenrs(when possible)
 
 class AppFlow {
