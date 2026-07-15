@@ -5,23 +5,23 @@
         switch (CurrentFlow.CurrentState)
         {
             case Flow.Start:
-                AppStart();
+                AppStartState.AppStart();
                 break;
 
             case Flow.MainMenu:
-                MainMenu();
+                MainMenuState.MainMenu();
                 break;
 
             case Flow.CharacterSelect:
-                CharactersSelect();
+                CharacterSelectState.CharactersSelect();
                 break;
 
             case Flow.Battle:
-                Battle();
+                BattleState.Battle();
                 break;
 
             case Flow.Quit:
-                Quit();
+                QuitState.Quit();
                 break;
         }
     }

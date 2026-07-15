@@ -6,19 +6,15 @@ class Player {
 
     public static void GetCharacter()
     {
-        // this must change!
-        AppInterface.CharacterSelect();
-
         bool isValid = int.TryParse(AppInterface.userChoose, out AppInterface.userChooseIndex);
         while (true)
         {
-
             if (isValid)
             {
                 SetCharacter();
                 break;
             }
-            else Console.WriteLine("Enter a valid type!!");
+            else AppInterface.UserHelper();
         }
     }
 

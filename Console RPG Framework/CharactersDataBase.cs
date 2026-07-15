@@ -1,12 +1,5 @@
 ﻿using System;
-//player => AI => characters => freeCharacters to dont get null ref
 
-//logic must separate from app interface
-
-// every method must do one think
-//every class must have relevant content
-// logic must call a interface and interface must contact appinterface
-//app interface can directly call logic but opposite not!
 interface IAbillity
 {
     void Attack(CharactersDataBase player, CharactersDataBase ai);
