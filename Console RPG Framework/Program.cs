@@ -19,5 +19,6 @@ class Program {
         {
             stateMachine.Machine(gameData);
         }
+        Console.ReadKey();
     }
 }

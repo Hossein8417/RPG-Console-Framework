@@ -1,4 +1,6 @@
-﻿class CharacterSelectState : IState
+﻿using System.Threading.Tasks;
+
+class CharacterSelectState : IState
 {
     public void Run(GameData data)
     {
@@ -11,5 +13,6 @@
         data.Ai.SetCharacter(data);
 
         data.CurrentFlow.CurrentState = Flow.Battle;
+
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 class BattleState : IState{
 
@@ -38,9 +39,6 @@ class BattleState : IState{
                 data.Player.PlayerCharacter.UpdateHealth(data.Ai.AiCharacter);
             }
 
-            
-            //Delay(1500);
-            //Console.Clear();
         }
         ReLoop.Loop(data);
     }

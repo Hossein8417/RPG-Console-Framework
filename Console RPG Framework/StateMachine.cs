@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 interface IState
 {
@@ -19,5 +21,6 @@ class StateMachine {
 
     public void Machine(GameData data) { 
         states[data.CurrentFlow.CurrentState].Run(data);
+        Console.Clear();
     }
 }

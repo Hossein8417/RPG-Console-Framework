@@ -10,7 +10,7 @@ class AppInterface
 
     #region Main menu
     public static void WelcomeDisplayer() {
-        Console.WriteLine("Hello and welcome to this RPG Framework that built for console");
+        Console.WriteLine("Hello and welcome to this RPG Framework that built for console version 2.4");
     }
     public static void PlayMenuDisplayer(GameData data) {
         Console.WriteLine("1_Play\n2_Quit Game");
