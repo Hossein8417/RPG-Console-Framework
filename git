@@ -1,0 +1,180 @@
+[33mcommit af2660728663c265521e58544273b7661134a29f[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mRefactor[m[33m, [m[1;31morigin/Refactor[m[33m)[m
+Author: Hossein8417 <hosseinnardini19@gmail.com>
+Date:   Mon Jul 13 20:14:38 2026 +0330
+
+    Now App Use State Machine
+
+[33mcommit dc99b442669bfae8052268ee14ee831561191514[m
+Author: Hossein8417 <hosseinnardini19@gmail.com>
+Date:   Mon Jul 13 20:03:47 2026 +0330
+
+    Flow enum transfered to Flow.cs file
+
+[33mcommit f4a6a5c3f818772870512b2ad3a1bb06854bbacd[m
+Author: Hossein8417 <hosseinnardini19@gmail.com>
+Date:   Mon Jul 13 20:02:12 2026 +0330
+
+    Files and methods and classes renamed
+
+[33mcommit 367081b2cf35b994ff2c60d87647a14b9f02d9eb[m
+Author: Hossein8417 <hosseinnardini19@gmail.com>
+Date:   Mon Jul 13 16:33:22 2026 +0330
+
+    refactor : AI class created adn get character and set charater methods transfered to this file
+
+[33mcommit 9ce50a55cf48297ba7f85097fe0229ca599b262b[m
+Author: Hossein8417 <hosseinnardini19@gmail.com>
+Date:   Mon Jul 13 16:09:02 2026 +0330
+
+    refactor : Player class created and get character method transfer to this file
+
+[33mcommit c1d5a8925676508d103b69bd0b1e7cb57eb9b7e9[m
+Author: Hossein8417 <hosseinnardini19@gmail.com>
+Date:   Mon Jul 13 14:43:45 2026 +0330
+
+    basic Error handling (using try and catch) added to the app
+
+[33mcommit 693475039916e993bac4a4adcf6795361ff07f8c[m
+Author: Hossein8417 <hosseinnardini19@gmail.com>
+Date:   Mon Jul 13 14:40:40 2026 +0330
+
+    items file and class  renamed to items data base
+
+[33mcommit e0d9e49a9faf96358e8647d3fe07b834ac61707c[m
+Author: Hossein8417 <hosseinnardini19@gmail.com>
+Date:   Mon Jul 13 14:36:44 2026 +0330
+
+    items list class separated from items file
+
+[33mcommit 3aefa021592639428b5e753207a7375d5d7ff9af[m
+Author: Hossein8417 <hosseinnardini19@gmail.com>
+Date:   Mon Jul 13 14:34:08 2026 +0330
+
+    App UI and app logic separating Part 2
+
+[33mcommit 96d30369a2daa76e210bb2181c501e2df468a41c[m
+Author: Hossein8417 <hosseinnardini19@gmail.com>
+Date:   Mon Jul 13 14:00:20 2026 +0330
+
+    App UI and app logic separating Part 1
+
+[33mcommit 49e7cebf69ebbc83d4a5369a5667cad8343ab09b[m
+Author: Hossein8417 <hosseinnardini19@gmail.com>
+Date:   Mon Jul 13 12:30:02 2026 +0330
+
+    Refactor: Generate random index separate from the characters.cs
+
+[33mcommit 869b211db3147357fc9b50dd337de8e5a360fb64[m
+Author: Hossein8417 <hosseinnardini19@gmail.com>
+Date:   Mon Jul 13 11:58:43 2026 +0330
+
+    Refactor:remove duplicate inventory assignment and generalize inventory display and separate character selection
+
+[33mcommit 7d4ae6f2efee925783846a2980e184b02f1ae180[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Merge: 925fcc9 0cce45b
+Author: Hossein8417 <hosseinnardini19@gmail.com>
+Date:   Sun Jul 12 12:50:38 2026 +0330
+
+    Merge pull request #2 from Hossein8417/develop
+    
+    All useless file's are deleted
+
+[33mcommit 0cce45b91bed47bc88506b5ddf863a9d92b632f7[m[33m ([m[1;31morigin/develop[m[33m, [m[1;32mdevelop[m[33m)[m
+Merge: e92301e 925fcc9
+Author: Hossein8417 <hosseinnardini19@gmail.com>
+Date:   Sun Jul 12 12:44:40 2026 +0330
+
+    Merge branch 'main' into develop
+
+[33mcommit e92301ebdc199ff41aca2eee02dc04ee1fbc4cfb[m
+Author: Hossein8417 <hosseinnardini19@gmail.com>
+Date:   Sun Jul 12 12:41:46 2026 +0330
+
+    All useless file's are deleted
+
+[33mcommit 925fcc9c4513b4c446680c0a7abbeebf2ff2e774[m
+Author: Hossein8417 <hosseinnardini19@gmail.com>
+Date:   Sun Jul 12 12:36:19 2026 +0330
+
+    Version 1.01
+
+[33mcommit eb1360f62f203281b6ab55556f9b0eb052314dbd[m
+Author: Hossein8417 <hosseinnardini19@gmail.com>
+Date:   Sat Jul 11 21:47:55 2026 +0330
+
+    Now app instead of using Thread.Sleep is using Async/Await
+
+[33mcommit 65f947ed86cb39418a15ab216b639a36eb01f190[m
+Merge: 5d2d7af cc16aae
+Author: Hossein8417 <hosseinnardini19@gmail.com>
+Date:   Sat Jul 11 19:09:01 2026 +0330
+
+    Merge pull request #1 from Hossein8417/develop
+    
+    Develop
+
+[33mcommit cc16aae8bfd3a06567b9ddeeb322adcd521819cd[m
+Author: Hossein8417 <hosseinnardini19@gmail.com>
+Date:   Sat Jul 11 18:57:09 2026 +0330
+
+    Health/Damage system BUGS are fixed
+
+[33mcommit b23483534045f22a658a4d118cc2fe3ebdbbccf9[m
+Author: Hossein8417 <hosseinnardini19@gmail.com>
+Date:   Tue Jul 7 14:09:05 2026 +0330
+
+    Health/Damage system created
+
+[33mcommit a96ebd4ee895adf6252bc88b74d872d88110e069[m
+Author: Hossein8417 <hosseinnardini19@gmail.com>
+Date:   Tue Jul 7 11:02:59 2026 +0330
+
+    Now app can start over after finishing previous battle
+
+[33mcommit 0ca6aeaf5d47d725ebc83ff21c1b825bd26ff06b[m
+Author: Hossein8417 <hosseinnardini19@gmail.com>
+Date:   Tue Jul 7 10:44:44 2026 +0330
+
+    BUG FIX:Now ai inventory showing correctly
+
+[33mcommit b1ed6b1776f7bf50312ac41e0357dd51341b7e11[m
+Author: Hossein8417 <hosseinnardini19@gmail.com>
+Date:   Mon Jul 6 17:43:40 2026 +0330
+
+    app logic's are more neat and tidy up, and some bug's are fixed
+
+[33mcommit d9cd553f55e66f88a37af857720e0902666742c2[m
+Author: Hossein8417 <hosseinnardini19@gmail.com>
+Date:   Fri Jul 3 12:27:29 2026 +0330
+
+    Inventory parts are cleaner and arranged
+
+[33mcommit 4625f647063cfb3097949526b918772bf60e8dde[m
+Author: Hossein8417 <hosseinnardini19@gmail.com>
+Date:   Fri Jul 3 12:18:13 2026 +0330
+
+    App flow re-touched
+
+[33mcommit 59c745a22ad1d14605c78c570f83fefb42024530[m
+Author: Hossein8417 <hosseinnardini19@gmail.com>
+Date:   Thu Jul 2 13:43:28 2026 +0330
+
+    Items parts are cleaner and much more arranged
+
+[33mcommit c3ba4a2b5d334b019c51f895055efdac0c46f62a[m
+Author: Hossein8417 <hosseinnardini19@gmail.com>
+Date:   Thu Jul 2 13:40:16 2026 +0330
+
+    Characters parts are cleaner and more arranged
+
+[33mcommit 5d2d7afe09ed2469f41592a70e25294794811a7b[m
+Author: Hossein8417 <hosseinnardini19@gmail.com>
+Date:   Thu Jun 25 18:14:21 2026 +0330
+
+    Create README.md
+
+[33mcommit f91ae82a39612e047d9cc7ec13882c8ed330a1ed[m
+Author: Hossein841712 <hnardini16@gmail.com>
+Date:   Thu Jun 25 18:06:21 2026 +0330
+
+    Project created!
