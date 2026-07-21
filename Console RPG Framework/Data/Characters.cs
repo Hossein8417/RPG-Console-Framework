@@ -12,7 +12,10 @@ class Characters
         new Ash("Ash", 100, true, 2, Items.items[1], Items.items[5])
     };
 
-    public static List<CharactersDataBase> freeCharacters = new List<CharactersDataBase>();
-    
+    public List<CharactersDataBase> freeCharacters = new List<CharactersDataBase>();
 
+
+    public void CleanFreeCharactersList() { 
+        freeCharacters.Clear();
+    }
 }

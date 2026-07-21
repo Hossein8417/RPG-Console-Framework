@@ -1,28 +1,23 @@
-﻿class StateMachine {
+﻿using System.Collections.Generic;
+
+interface IState
+{
+    void Run(GameData data);
+}
+
+class StateMachine {
+
     
-    public static void Machine() {        
+    public Dictionary<Flow, IState> states = new Dictionary<Flow, IState>
+    {
+        { Flow.Start, new AppStartState() },
+        { Flow.MainMenu, new MainMenuState() },
+        { Flow.CharacterSelect, new CharacterSelectState() },
+        { Flow.Battle, new BattleState() },
+        { Flow.Quit, new QuitState() }
+    };
 
-        switch (CurrentFlow.CurrentState)
-        {
-            case Flow.Start:
-                AppStartState.AppStart();
-                break;
-
-            case Flow.MainMenu:
-                MainMenuState.MainMenu();
-                break;
-
-            case Flow.CharacterSelect:
-                CharacterSelectState.CharactersSelect();
-                break;
-
-            case Flow.Battle:
-                BattleState.Battle();
-                break;
-
-            case Flow.Quit:
-                QuitState.Quit();
-                break;
-        }
+    public void Machine(GameData data) { 
+        states[data.CurrentFlow.CurrentState].Run(data);
     }
 }

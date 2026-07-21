@@ -1,43 +1,48 @@
 ﻿using System;
 
-class BattleState{
+class BattleState : IState{
 
-    public static void Battle()
+    public void Run(GameData data)
     {
-        AppInterface.BattleInfoDisplayer();
+        AppInterface.BattleInfoDisplayer(data);
 
-        Inventory.ShowCharacterInventory(Player.PlayerCharacter);
-        Inventory.ShowCharacterInventory(AI.AiCharacter);
+        Inventory.ShowCharacterInventory(data.Player.PlayerCharacter);
+        Inventory.ShowCharacterInventory(data.Ai.AiCharacter);
 
-        AppInterface.HealthDisplayer(Player.PlayerCharacter);
-        AppInterface.HealthDisplayer(AI.AiCharacter);
+        AppInterface.HealthDisplayer(data.Player.PlayerCharacter);
+        AppInterface.HealthDisplayer(data.Ai.AiCharacter);
 
-        Player.PlayerCharacter.CalculateDamage(Player.PlayerCharacter);
-        AI.AiCharacter.CalculateDamage(AI.AiCharacter);
+        
+
+        data.Player.PlayerCharacter.CalculateDamage();
+        data.Ai.AiCharacter.CalculateDamage();
 
         for (int round = 1; round <= 6; round++)
         {
             AppInterface.RoundCountDisplayer(round);
 
-            AppInterface.HealthUpdateDisplayer(Player.PlayerCharacter);
-            AppInterface.HealthUpdateDisplayer(AI.AiCharacter);
+            AppInterface.HealthUpdateDisplayer(data.Player.PlayerCharacter);
+            AppInterface.HealthUpdateDisplayer(data.Ai.AiCharacter);
 
             if (round == 1 || round == 3 || round == 5)//player attacks
             {
-                Player.PlayerCharacter.Attack(Player.PlayerCharacter, AI.AiCharacter);
-                AI.AiCharacter.Defend(AI.AiCharacter, Player.PlayerCharacter);
+                data.Player.PlayerCharacter.Attack();
+                data.Ai.AiCharacter.Defend();
+                data.Ai.AiCharacter.UpdateHealth(data.Player.PlayerCharacter);
             }
 
             else if (round == 2 || round == 4 || round == 6)//ai attacks
             {
-                AI.AiCharacter.Attack(AI.AiCharacter, Player.PlayerCharacter);
-                Player.PlayerCharacter.Defend(Player.PlayerCharacter, AI.AiCharacter);
+                data.Ai.AiCharacter.Attack();
+                data.Player.PlayerCharacter.Defend();
+                data.Player.PlayerCharacter.UpdateHealth(data.Ai.AiCharacter);
             }
 
+            
             //Delay(1500);
             //Console.Clear();
         }
-        ReLoop.Loop();
+        ReLoop.Loop(data);
     }
 
 

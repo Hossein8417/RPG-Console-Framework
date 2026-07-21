@@ -1,8 +1,8 @@
 ﻿using System;
 
-class QuitState {
+class QuitState : IState{
 
-    public static void Quit()
+    public void Run(GameData data)
     {
         //Console.Clear();
         AppInterface.GoodbyeDisplayer();

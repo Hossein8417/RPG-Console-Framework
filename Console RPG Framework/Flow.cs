@@ -9,5 +9,5 @@
 
 class CurrentFlow {
 
-    public static Flow CurrentState = Flow.Start;
+    public Flow CurrentState = Flow.Start;
 }

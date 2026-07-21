@@ -1,29 +1,29 @@
 ﻿using System;
 
-class MainMenuState {
+class MainMenuState : IState{
 
     public static bool loop = true;
-    public static void MainMenu()
+    public void Run(GameData data)
     {
-        //loop #1
+        
         AppInterface.WelcomeDisplayer();
         while (loop)
         {
             bool menuLoop = true;
-            AppInterface.PlayMenuDisplayer();
-            //loop #2
+            AppInterface.PlayMenuDisplayer(data);
+            
             while (menuLoop)
             {
-                if (AppInterface.input == "play" || AppInterface.input == "1")
+                if (data.UserInput.input == "play" || data.UserInput.input == "1")
                 {
-                    CurrentFlow.CurrentState = Flow.CharacterSelect;
+                    data.CurrentFlow.CurrentState = Flow.CharacterSelect;
                     loop = false;
                     break;
                 }
 
-                else if (AppInterface.input == "quit" || AppInterface.input == "2")
+                else if (data.UserInput.input == "quit" || data.UserInput.input == "2")
                 {
-                    CurrentFlow.CurrentState = Flow.Quit;
+                    data.CurrentFlow.CurrentState = Flow.Quit;
                     loop = false;
                     break;
                 }

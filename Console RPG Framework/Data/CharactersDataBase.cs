@@ -2,8 +2,13 @@
 
 interface IAbillity
 {
-    void Attack(CharactersDataBase player, CharactersDataBase ai);
-    void Defend(CharactersDataBase player, CharactersDataBase ai);
+    void Attack();
+    void Defend();
+}
+interface ICharacter
+{
+    void GetCharacter(GameData data);
+    void SetCharacter(GameData data);
 }
 
 class CharactersDataBase : IAbillity
@@ -27,30 +32,28 @@ class CharactersDataBase : IAbillity
         Item2 = items2;
 
     }
-    public void Attack(CharactersDataBase character1, CharactersDataBase character2)
+    public void Attack()
     {
-        Console.WriteLine($"{character1.Name} attack {character2.Name}");
+        Console.WriteLine($"{this.Name} attacks !");
 
     }
 
-    public void Defend(CharactersDataBase character1, CharactersDataBase character2)
+    public void Defend()
     {
-        Console.WriteLine($"{character1.Name} Defending himself from {character2.Name}");
-
-        UpdateHealth(character1, character2);
+        Console.WriteLine($"{this.Name} Defending himself");
 
     }
 
-    public void CalculateHealth(CharactersDataBase character) {
-        health = character.BaseHealth + character.Item2.Heal;
+    public void CalculateHealth() {
+        health = this.BaseHealth + this.Item2.Heal;
     }
     
-    public void CalculateDamage(CharactersDataBase character) { 
-        damage = character.BaseDamage + character.Item.ItemDamage;
+    public void CalculateDamage() { 
+        damage = this.BaseDamage + this.Item.ItemDamage;
     }
 
-    public void UpdateHealth(CharactersDataBase character1, CharactersDataBase character2) { 
-        character1.health -= character2.damage;
+    public void UpdateHealth(CharactersDataBase character) { 
+        this.health -= character.damage;
     }
 }
 #region Characters

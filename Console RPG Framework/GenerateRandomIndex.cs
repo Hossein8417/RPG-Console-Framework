@@ -4,5 +4,8 @@ class GenerateRandomIndex
 {
 
     public static Random random = new Random();
-    public static int aiCharaceterIndex = random.Next(0, Characters.freeCharacters.Count);
+
+    public static int RandomIndex(GameData data) {
+        return random.Next(0, data.Characters.freeCharacters.Count);
+    } 
 }

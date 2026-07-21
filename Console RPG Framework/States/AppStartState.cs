@@ -1,12 +1,10 @@
-﻿using System;
+﻿class AppStartState : IState {
 
-class AppStartState {
-
-    public static void AppStart()
+    public void Run(GameData data)
     {
         AppInterface.LoadingDisplayer();
         //Delay(3000);
         //Console.Clear();
-        CurrentFlow.CurrentState = Flow.MainMenu;
+        data.CurrentFlow.CurrentState = Flow.MainMenu;
     }
 }

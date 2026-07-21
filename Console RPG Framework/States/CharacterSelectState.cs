@@ -1,13 +1,15 @@
-﻿class CharacterSelectState
+﻿class CharacterSelectState : IState
 {
-    public static void CharactersSelect()
+    public void Run(GameData data)
     {
-        AppInterface.CharacterSelect();
+        data.Characters.CleanFreeCharactersList();
+
+        AppInterface.CharacterSelect(data);
+
+        data.Player.GetCharacter(data);
         
-        Player.GetCharacter();
+        data.Ai.SetCharacter(data);
 
-        AI.SetCharacter();
-
-        CurrentFlow.CurrentState = Flow.Battle;
+        data.CurrentFlow.CurrentState = Flow.Battle;
     }
 }
